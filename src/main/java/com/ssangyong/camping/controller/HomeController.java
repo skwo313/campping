@@ -50,13 +50,6 @@ public class HomeController {
     public String testPage() {
         return "test.page";
     }
-    
-    /**
-     * Tiles를 사용(header, left, footer 제외)
-     */    
-    @RequestMapping("/testPart.do")
-    public String testPart() {
-        return "test.part";
-    }        
+
 	
 }
