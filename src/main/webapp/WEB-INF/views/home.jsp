@@ -20,7 +20,58 @@
 
 </body>
 </html> -->
-<div id="map" style="width: 500px; height: 400px;"></div>
+<title>CampPing</title>
+<style>
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+#main {
+	display: flex;
+}
+
+#map {
+	display: flex;
+	width: 80%;
+	height: 80vh;
+}
+
+#search-tab {
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	width: 100%;
+	height: 72px;
+	padding: 0px 40px;
+	border-radius: 2px;
+	box-shadow: rgb(0 0 0/ 10%) 0px 7px 15px -2px;
+	background-color: rgb(255, 255, 255);
+}
+
+#search-text {
+	flex: 1 1 0%;
+	height: 27px;
+	margin-left: 20px;
+	font-size: 18px;
+	border: 0px;
+	background-color: transparent;
+}
+
+#list {
+	display: flex;
+	width: 20%;
+	height: 80vh;
+}
+</style>
+<form>
+	<label id="search-tab"> <input id="search-text" placeholder="지역 또는 이름을 입력하세요." />
+	</label>
+</form>
+<div id="main">
+	<div id="map"></div>
+	<div id="list">리스트가 출력될 장소 입니다.</div>
+</div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=06bd11d6b565f348aeb6f7ee8032c658"></script>
 <script type="text/javascript">
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
@@ -30,9 +81,4 @@
 	//지도의 레벨(확대, 축소 정도)
 	};
 	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-	function resizeMap() {
-	    var mapContainer = document.getElementById('map');
-	    mapContainer.style.width = '650px';
-	    mapContainer.style.height = '650px'; 
-	}
 </script>
