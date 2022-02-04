@@ -27,13 +27,13 @@ html, body {
 	height: 100%;
 }
 
-#main {
+.main {
 	display: flex;
 }
 
 #map {
 	display: flex;
-	width: 80%;
+	width: 100%;
 	height: 80vh;
 }
 
@@ -58,19 +58,93 @@ html, body {
 	background-color: transparent;
 }
 
-#list {
+.list {
 	display: flex;
-	width: 20%;
+	flex-direction: column;
+	width: 500px;
 	height: 80vh;
+}
+
+.camping-place {
+	display: flex;
+	padding : 10px 15px
 }
 </style>
 <form>
-	<label id="search-tab"> <input id="search-text" placeholder="지역 또는 이름을 입력하세요." />
+	<label id="search-tab"> <input id="search-text" class="form-control" placeholder="지역 또는 이름을 입력하세요." />
 	</label>
 </form>
-<div id="main">
+<div class="main">
 	<div id="map"></div>
-	<div id="list">리스트가 출력될 장소 입니다.</div>
+	<div class="list">
+		<div>
+			<select class="form-select">
+				<option>서울/경기</option>
+				<option>충청남도</option>
+				<option>충청북도</option>
+				<option>강원도</option>
+				<option>전라남도</option>
+				<option>전라북도</option>
+				<option>경상남도</option>
+				<option>경상북도</option>
+			</select>
+		</div>
+		<div class="camping-place">
+			<div style="display: flex;">
+				<img alt="" src="img/camping-test.jpg" width="150" height="150">
+			</div>
+			<div style="display: flex; flex-direction: column;">
+				<div>산청 지리산 자양보 오토캠핑장</div>
+				<div>산청 지리산 자양보 오토캠핑장</div>
+				<div>산청 지리산 자양보 오토캠핑장</div>
+				<div>산청 지리산 자양보 오토캠핑장</div>
+			</div>
+		</div>
+		<div class="camping-place">
+			<div style="display: flex;">
+				<img alt="" src="img/camping-test.jpg" width="150" height="150">
+			</div>
+			<div style="display: flex; flex-direction: column;">
+				<div>산청 지리산 자양보 오토캠핑장</div>
+				<div>산청 지리산 자양보 오토캠핑장</div>
+				<div>산청 지리산 자양보 오토캠핑장</div>
+				<div>산청 지리산 자양보 오토캠핑장</div>
+			</div>
+		</div>
+		<div class="camping-place">
+			<div style="display: flex;">
+				<img alt="" src="img/camping-test.jpg" width="150" height="150">
+			</div>
+			<div style="display: flex; flex-direction: column;">
+				<div>산청 지리산 자양보 오토캠핑장</div>
+				<div>산청 지리산 자양보 오토캠핑장</div>
+				<div>산청 지리산 자양보 오토캠핑장</div>
+				<div>산청 지리산 자양보 오토캠핑장</div>
+			</div>
+		</div>
+		<div class="camping-place">
+			<div style="display: flex;">
+				<img alt="" src="img/camping-test.jpg" width="150" height="150">
+			</div>
+			<div style="display: flex; flex-direction: column;">
+				<div>산청 지리산 자양보 오토캠핑장</div>
+				<div>산청 지리산 자양보 오토캠핑장</div>
+				<div>산청 지리산 자양보 오토캠핑장</div>
+				<div>산청 지리산 자양보 오토캠핑장</div>
+			</div>
+		</div>
+		<div class="camping-place">
+			<div style="display: flex;">
+				<img alt="" src="img/camping-test.jpg" width="150" height="150">
+			</div>
+			<div style="display: flex; flex-direction: column;">
+				<div>산청 지리산 자양보 오토캠핑장</div>
+				<div>산청 지리산 자양보 오토캠핑장</div>
+				<div>산청 지리산 자양보 오토캠핑장</div>
+				<div>산청 지리산 자양보 오토캠핑장</div>
+			</div>
+		</div>
+	</div>
 </div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=06bd11d6b565f348aeb6f7ee8032c658"></script>
 <script type="text/javascript">

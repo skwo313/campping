@@ -8,6 +8,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <link href="css/common.css" rel="stylesheet" />
+<link href="css/font.css" rel="stylesheet" />
 <script src="js/common.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
