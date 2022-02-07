@@ -34,7 +34,7 @@
     <beans:bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
         <beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
         <beans:property name="order" value="1" />
-    </beans:bean>    
+    </beans:bean>
 	
 	
 </beans:beans>
