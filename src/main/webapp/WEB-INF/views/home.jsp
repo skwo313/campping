@@ -67,13 +67,31 @@ html, body {
 
 .camping-place {
 	display: flex;
-	padding : 10px 15px
+	padding: 10px 15px
+}
+
+.bg-dark{
+	background: url(img/bak.jpg);
+	background-size: cover;
+	background-blend-mode: color-dodge;
 }
 </style>
-<form>
-	<label id="search-tab"> <input id="search-text" class="form-control" placeholder="지역 또는 이름을 입력하세요." />
-	</label>
-</form>
+<header class="bg-dark py-5">
+	<div class="container px-4">
+		<div class="row gx-5 justify-content-center">
+			<div class="col-lg-6">
+				<div class="text-center my-4">
+					<h2 class="display-5 fw-bolder text-white mb-2">어느 캠핑장을 찾으시나요?</h2>
+					<form>
+						<label id="search-tab"> <input id="search-text" class="form-control" placeholder="지역 또는 이름을 입력하세요." />
+						</label>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
 <div class="main">
 	<div id="map"></div>
 	<div class="list">
