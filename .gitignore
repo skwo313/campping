@@ -15,7 +15,7 @@ pom.properties
 .settings/
 .loadpath
 .recommenders
-
+MANIFEST.MF
 # External tool builders
 .externalToolBuilders/
 
