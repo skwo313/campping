@@ -61,19 +61,115 @@ html, body {
 .list {
 	display: flex;
 	flex-direction: column;
-	width: 500px;
+	width: 600px;
 	height: 80vh;
+	overflow: scroll;
 }
 
 .camping-place {
 	display: flex;
-	padding: 10px 15px
+	padding: 10px 15px;
+	cursor: pointer;
 }
 
-.bg-dark{
+.bg-dark {
 	background: url(img/bak.jpg);
 	background-size: cover;
 	background-blend-mode: color-dodge;
+}
+
+.description1 {
+	width: 280px;
+	padding: 0 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 20px;
+	font-weight: bolder;
+}
+
+.description2 {
+	width: 280px;
+	padding: 0 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 15px;
+}
+
+.description3 {
+	width: 280px;
+	padding: 0 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 15px;
+}
+
+.description4 {
+	width: 280px;
+	padding: 0 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 12px;
+}
+
+.campingImg {
+	border-radius: 17px;
+	width: 150px;
+	height: 150px;
+}
+
+.descriptions {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.logo {
+	position: absolute;
+	left: 218px;
+	top: 10px;
+	width: 80px;
+	height: auto;
+}
+
+.modalImg {
+	width: 100%;
+	border-radius: 18px;
+}
+
+.detailDescription {
+	font-weight: bolder;
+	font-size: 21px;
+	padding-left: 4px;
+}
+
+hr {
+	width: 98%;
+	height: 2px !important;
+	margin: 18px 0px 18px 9px;
+	border: ridge;
+}
+
+::-webkit-scrollbar {
+	width: 20px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #d6dee1;
+	border-radius: 20px;
+	border: 6px solid transparent;
+	background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: #a8bbbf;
 }
 </style>
 <header class="bg-dark py-5">
@@ -107,70 +203,203 @@ html, body {
 				<option>경상북도</option>
 			</select>
 		</div>
-		<div class="camping-place">
+		<div class="camping-place" id="detail">
 			<div style="display: flex;">
-				<img alt="" src="img/camping-test.jpg" width="150" height="150">
+				<img class="campingImg" alt="" src="img/camping-test.jpg">
 			</div>
-			<div style="display: flex; flex-direction: column;">
-				<div>산청 지리산 자양보 오토캠핑장</div>
-				<div>산청 지리산 자양보 오토캠핑장</div>
-				<div>산청 지리산 자양보 오토캠핑장</div>
-				<div>산청 지리산 자양보 오토캠핑장</div>
+			<div class="descriptions">
+				<div class="description1">산청 지리산 자양보 오토캠핑장</div>
+				<div class="description2">경상남도 산청군</div>
+				<div class="description3">지리산</div>
+				<div class="description4">설명 어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구</div>
 			</div>
 		</div>
-		<div class="camping-place">
+		<div class="camping-place" id="detail">
 			<div style="display: flex;">
-				<img alt="" src="img/camping-test.jpg" width="150" height="150">
+				<img class="campingImg" alt="" src="img/camping-test.jpg">
 			</div>
-			<div style="display: flex; flex-direction: column;">
-				<div>산청 지리산 자양보 오토캠핑장</div>
-				<div>산청 지리산 자양보 오토캠핑장</div>
-				<div>산청 지리산 자양보 오토캠핑장</div>
-				<div>산청 지리산 자양보 오토캠핑장</div>
+			<div class="descriptions">
+				<div class="description1">산청 지리산 자양보 오토캠핑장</div>
+				<div class="description2">경상남도 산청군</div>
+				<div class="description3">지리산</div>
+				<div class="description4">설명 어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구</div>
 			</div>
 		</div>
-		<div class="camping-place">
+		<div class="camping-place" id="detail">
 			<div style="display: flex;">
-				<img alt="" src="img/camping-test.jpg" width="150" height="150">
+				<img class="campingImg" alt="" src="img/camping-test.jpg">
 			</div>
-			<div style="display: flex; flex-direction: column;">
-				<div>산청 지리산 자양보 오토캠핑장</div>
-				<div>산청 지리산 자양보 오토캠핑장</div>
-				<div>산청 지리산 자양보 오토캠핑장</div>
-				<div>산청 지리산 자양보 오토캠핑장</div>
+			<div class="descriptions">
+				<div class="description1">산청 지리산 자양보 오토캠핑장</div>
+				<div class="description2">경상남도 산청군</div>
+				<div class="description3">지리산</div>
+				<div class="description4">설명 어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구</div>
 			</div>
 		</div>
-		<div class="camping-place">
+		<div class="camping-place" id="detail">
 			<div style="display: flex;">
-				<img alt="" src="img/camping-test.jpg" width="150" height="150">
+				<img class="campingImg" alt="" src="img/camping-test.jpg">
 			</div>
-			<div style="display: flex; flex-direction: column;">
-				<div>산청 지리산 자양보 오토캠핑장</div>
-				<div>산청 지리산 자양보 오토캠핑장</div>
-				<div>산청 지리산 자양보 오토캠핑장</div>
-				<div>산청 지리산 자양보 오토캠핑장</div>
+			<div class="descriptions">
+				<div class="description1">산청 지리산 자양보 오토캠핑장</div>
+				<div class="description2">경상남도 산청군</div>
+				<div class="description3">지리산</div>
+				<div class="description4">설명 어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구</div>
 			</div>
 		</div>
-		<div class="camping-place">
+		<div class="camping-place" id="detail">
 			<div style="display: flex;">
-				<img alt="" src="img/camping-test.jpg" width="150" height="150">
+				<img class="campingImg" alt="" src="img/camping-test.jpg">
 			</div>
-			<div style="display: flex; flex-direction: column;">
-				<div>산청 지리산 자양보 오토캠핑장</div>
-				<div>산청 지리산 자양보 오토캠핑장</div>
-				<div>산청 지리산 자양보 오토캠핑장</div>
-				<div>산청 지리산 자양보 오토캠핑장</div>
+			<div class="descriptions">
+				<div class="description1">산청 지리산 자양보 오토캠핑장</div>
+				<div class="description2">경상남도 산청군</div>
+				<div class="description3">지리산</div>
+				<div class="description4">설명 어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구</div>
+			</div>
+		</div>
+		<div class="camping-place" id="detail">
+			<div style="display: flex;">
+				<img class="campingImg" alt="" src="img/camping-test.jpg">
+			</div>
+			<div class="descriptions">
+				<div class="description1">산청 지리산 자양보 오토캠핑장</div>
+				<div class="description2">경상남도 산청군</div>
+				<div class="description3">지리산</div>
+				<div class="description4">설명 어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구</div>
+			</div>
+		</div>
+		<div class="camping-place" id="detail">
+			<div style="display: flex;">
+				<img class="campingImg" alt="" src="img/camping-test.jpg">
+			</div>
+			<div class="descriptions">
+				<div class="description1">산청 지리산 자양보 오토캠핑장</div>
+				<div class="description2">경상남도 산청군</div>
+				<div class="description3">지리산</div>
+				<div class="description4">설명 어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구</div>
+			</div>
+		</div>
+		<div class="camping-place" id="detail">
+			<div style="display: flex;">
+				<img class="campingImg" alt="" src="img/camping-test.jpg">
+			</div>
+			<div class="descriptions">
+				<div class="description1">산청 지리산 자양보 오토캠핑장</div>
+				<div class="description2">경상남도 산청군</div>
+				<div class="description3">지리산</div>
+				<div class="description4">설명 어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">산청 지리산 자양보 오토캠핑장</h5>
+					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">X</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<img class="modalImg" alt="" src="img/camping-test.jpg">
+					<hr>
+					<p class="detailDescription">90000원 / 1박</p>
+					<hr>
+					<hr>
+					<hr>
+				</div>
+				<div class="modal-footer">
+					<a class="btn" id="modalY" href="#">예</a>
+					<button class="btn" type="button" data-dismiss="modal">아니요</button>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	$('#detail').click(function(e) {
+		e.preventDefault();
+		$('#detailModal').modal("show");
+	});
+</script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=06bd11d6b565f348aeb6f7ee8032c658"></script>
 <script type="text/javascript">
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 	var options = { //지도를 생성할 때 필요한 기본 옵션
 		center : new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-		level : 3
+		level : 12
 	//지도의 레벨(확대, 축소 정도)
 	};
+	var imageSrc = 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbqMXOH%2FbtrsSki0YsO%2FuVMoCkyqdKBh0k69CjnIl1%2Fimg.png', // 마커이미지의 주소입니다    
+	imageSize = new kakao.maps.Size(35, 48), // 마커이미지의 크기입니다
+	imageOption = {
+		offset : new kakao.maps.Point(17.5, 100)
+	}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize,
+			imageOption)
+	// 마커를 생성합니다
+
+	/* 사용자 위치에 따른 지도 중심 변경*/
+	if (navigator.geolocation) {
+
+		// GeoLocation을 이용해서 접속 위치를 얻어옵니다
+		navigator.geolocation.getCurrentPosition(function(position) {
+
+			var lat = position.coords.latitude, // 위도
+			lon = position.coords.longitude; // 경도
+
+			var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+			message = '<div style="padding:5px;">사용자의 위치</div>'; // 인포윈도우에 표시될 내용입니다
+
+			// 마커와 인포윈도우를 표시합니다
+			displayMarker(locPosition, message);
+
+		});
+
+	} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+
+		var locPosition = new kakao.maps.LatLng(33.450701, 126.570667), message = 'geolocation을 사용할수 없어요..'
+
+		displayMarker(locPosition, message);
+	}
+
+	// 지도에 마커와 인포윈도우를 표시하는 함수입니다
+	function displayMarker(locPosition, message) {
+
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+			map : map,
+			position : locPosition,
+			image : markerImage
+		});
+
+		var iwContent = message, // 인포윈도우에 표시할 내용
+		iwRemoveable = true;
+
+		// 인포윈도우를 생성합니다
+		var infowindow = new kakao.maps.InfoWindow({
+			content : iwContent,
+			removable : iwRemoveable
+		});
+
+		// 인포윈도우를 마커위에 표시합니다 
+		infowindow.open(map, marker);
+
+		// 지도 중심좌표를 접속위치로 변경합니다
+		map.setCenter(locPosition);
+	}
+	/*-----------------------------------------------------------*/
+	var markerPosition = new kakao.maps.LatLng(35.267374619147226,
+			127.85531231177431);
+
+	var marker = new kakao.maps.Marker({
+		position : markerPosition,
+		image : markerImage
+	});
 	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+	marker.setMap(map);
 </script>
