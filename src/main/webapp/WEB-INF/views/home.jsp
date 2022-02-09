@@ -21,6 +21,9 @@
 </body>
 </html> -->
 <title>CampPing</title>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="css/datepicker.css">
 <style>
 html, body {
 	width: 100%;
@@ -61,7 +64,7 @@ html, body {
 .list {
 	display: flex;
 	flex-direction: column;
-	width: 600px;
+	min-width: 470px;
 	height: 80vh;
 	overflow: scroll;
 }
@@ -146,6 +149,11 @@ html, body {
 	padding-left: 4px;
 }
 
+.form-box {
+	padding-top: 7px;
+	padding-left: 5px;
+}
+
 hr {
 	width: 98%;
 	height: 2px !important;
@@ -191,7 +199,7 @@ hr {
 <div class="main">
 	<div id="map"></div>
 	<div class="list">
-		<div>
+		<div class="form-box">
 			<select class="form-select">
 				<option>서울/경기</option>
 				<option>충청남도</option>
@@ -305,14 +313,32 @@ hr {
 				<div class="modal-body">
 					<img class="modalImg" alt="" src="img/camping-test.jpg">
 					<hr>
+
+					<hr>
 					<p class="detailDescription">90000원 / 1박</p>
 					<hr>
-					<hr>
-					<hr>
+					<p class="detailDescription">예약 정보</p>
+					<form>
+
+						<div style="display: flex;">
+							<input type="text" id="datepicker_start" class="form-control" value="" placeholder="체크인" />
+							<span style="font-size: x-large;">~</span>
+							<input type="text" id="datepicker_end" class="form-control" value="" placeholder="체크아웃" />
+						</div>
+						<br>
+						<input type="number" id="person" class="form-control" value="" placeholder="인원수" />
+						<hr>
+						<p class="detailDescription">결제 금액</p>
+						<div style="display: flex; justify-content: flex-end;">
+							<input type="text" readonly class="form-control-plaintext" value="<fmt:formatNumber value='200000'/>" id="price" style="width: 15%; text-align: -webkit-right;" />
+							<span style="font-size: x-large;">원</span>
+						</div>
+					</form>
+
 				</div>
 				<div class="modal-footer">
-					<a class="btn" id="modalY" href="#">예</a>
-					<button class="btn" type="button" data-dismiss="modal">아니요</button>
+					<a class="btn" id="modalY" href="#">예약하기</a>
+					<!-- <button class="btn" type="button" data-dismiss="modal">아니오</button> -->
 				</div>
 			</div>
 		</div>
@@ -402,4 +428,121 @@ hr {
 	});
 	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 	marker.setMap(map);
+</script>
+<script type="text/javascript">
+	$(function() {
+		fn_default_datepicker();
+	});
+
+	function fn_default_datepicker() {
+		var start = $("#datepicker_start").datepicker(
+				{
+					dateFormat : 'yy-mm-dd' //Input Display Format 변경
+					,
+					showOtherMonths : true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+					,
+					showMonthAfterYear : true //년도 먼저 나오고, 뒤에 월 표시
+					,
+					changeYear : false //콤보박스에서 년 선택 가능
+					,
+					changeMonth : false //콤보박스에서 월 선택 가능                
+					//,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시
+					//,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
+					//,buttonImageOnly: true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
+					,
+					buttonText : "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
+					,
+					yearSuffix : "년" //달력의 년도 부분 뒤에 붙는 텍스트
+					,
+					monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+							'7월', '8월', '9월', '10월', '11월', '12월' ] //달력의 월 부분 텍스트
+					,
+					monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
+							'8월', '9월', '10월', '11월', '12월' ] //달력의 월 부분 Tooltip 텍스트
+					,
+					dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ] //달력의 요일 부분 텍스트
+					,
+					dayNames : [ '일요일', '월요일', '화요일', '수요일', '목요일', '금요일',
+							'토요일' ] //달력의 요일 부분 Tooltip 텍스트
+					,
+					minDate : "today" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+					,
+					maxDate : "+1Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                
+				});
+
+		var end = $("#datepicker_end").datepicker(
+				{
+					dateFormat : 'yy-mm-dd' //Input Display Format 변경
+					,
+					showOtherMonths : true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+					,
+					showMonthAfterYear : true //년도 먼저 나오고, 뒤에 월 표시
+					,
+					changeYear : false //콤보박스에서 년 선택 가능
+					,
+					changeMonth : false //콤보박스에서 월 선택 가능                
+					//,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
+					//,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
+					//,buttonImageOnly: true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
+					,
+					buttonText : "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
+					,
+					yearSuffix : "년" //달력의 년도 부분 뒤에 붙는 텍스트
+					,
+					monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+							'7월', '8월', '9월', '10월', '11월', '12월' ] //달력의 월 부분 텍스트
+					,
+					monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
+							'8월', '9월', '10월', '11월', '12월' ] //달력의 월 부분 Tooltip 텍스트
+					,
+					dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ] //달력의 요일 부분 텍스트
+					,
+					dayNames : [ '일요일', '월요일', '화요일', '수요일', '목요일', '금요일',
+							'토요일' ] //달력의 요일 부분 Tooltip 텍스트
+					,
+					minDate : "($('#datepicker_start').val())+1D" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+					,
+					maxDate : "+1Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+					,
+					defaultDate : "+1w"
+				});
+
+		//초기값을 오늘 날짜로 설정
+		/* $('#datepicker_start').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+		$('#datepicker_end').datepicker('setDate', '+1D'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후) */
+	}
+
+	function getDate(element) {
+		var date;
+		var dateFormat = "yy-mm-dd";
+		try {
+			date = $.datepicker.parseDate(dateFormat, element.value);
+		} catch (error) {
+			date = null;
+		}
+		return date;
+	}
+	$(document).ready(
+			function() {
+
+				$("#datepicker_start").on("click", function() {
+
+				});
+
+				$("#datepicker_start").on(
+						"change",
+						function(e) {
+							var end = $("#datepicker_end").datepicker("option",
+									"minDate", getDate(e.target));
+						});
+
+				$("#datepicker_end").on("change", function(e) {
+
+				});
+
+				$("#date_search").on("click", function() {
+					var start = $("#datepicker_start").val();
+					var end = $("#datepicker_end").val();
+				});
+			});
 </script>
