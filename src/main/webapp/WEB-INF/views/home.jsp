@@ -330,7 +330,7 @@ hr {
 						<hr>
 						<p class="detailDescription">결제 금액</p>
 						<div style="display: flex; justify-content: flex-end;">
-							<input type="text" readonly class="form-control-plaintext" value="<fmt:formatNumber value='200000'/>" id="price" style="width: 15%; text-align: -webkit-right;" />
+							<input type="text" readonly class="form-control-plaintext" value="30000" id="price" style="width: 15%; text-align: -webkit-right;" />
 							<span style="font-size: x-large;">원</span>
 						</div>
 					</form>
