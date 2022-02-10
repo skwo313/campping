@@ -313,9 +313,14 @@ hr {
 				<div class="modal-body">
 					<img class="modalImg" alt="" src="img/camping-test.jpg">
 					<hr>
-
+					<p class="detailDescription">위치</p>
+					<p>경상남도 산청군 시천면 남명로 392-23</p>
 					<hr>
-					<p class="detailDescription">90000원 / 1박</p>
+					<p class="detailDescription">상세 설명</p>
+					<p>자양보 유원지 바로 옆! 천왕봉을 바라보는 산청 타프캠핑장 (글램핑타프+데크)</p>
+					<p>캠핑톡 고객센터 : 070-4336-1824 (예약관련문의)</p>
+					<p>산청 지리산 자양보 오토캠핑장 : 010-4143-3005 (현장문의</p>
+					<p>사이트 주소: http://jyb-camp.com/default/</p>
 					<hr>
 					<p class="detailDescription">예약 정보</p>
 					<form>
@@ -327,12 +332,14 @@ hr {
 						</div>
 						<br>
 						<input type="number" id="person" class="form-control" value="" placeholder="인원수" />
+						<p class="detailDescription" style="padding-top: 7px; text-align: -webkit-right; font-weight: normal;">90000원 / 1박</p>
 						<hr>
 						<p class="detailDescription">결제 금액</p>
 						<div style="display: flex; justify-content: flex-end;">
-							<input type="text" readonly class="form-control-plaintext" value="30000" id="price" style="width: 15%; text-align: -webkit-right;" />
-							<span style="font-size: x-large;">원</span>
+							<input type="text" readonly class="form-control-plaintext" value="" id="price" style="width: 15%; font-size: 19px; text-align: -webkit-right;" />
+							<span style="padding-top: 3px; padding-left: 3px; font-size: x-large;">원</span>
 						</div>
+
 					</form>
 
 				</div>
@@ -500,7 +507,7 @@ hr {
 					dayNames : [ '일요일', '월요일', '화요일', '수요일', '목요일', '금요일',
 							'토요일' ] //달력의 요일 부분 Tooltip 텍스트
 					,
-					minDate : "($('#datepicker_start').val())+1D" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+					minDate : "+1D" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
 					,
 					maxDate : "+1Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
 					,
@@ -535,14 +542,20 @@ hr {
 							var end = $("#datepicker_end").datepicker("option",
 									"minDate", getDate(e.target));
 						});
+				
 
 				$("#datepicker_end").on("change", function(e) {
 
 				});
 
-				$("#date_search").on("click", function() {
-					var start = $("#datepicker_start").val();
-					var end = $("#datepicker_end").val();
+				$("#datepicker_start,#datepicker_end").on("change", function() {
+					var start = $("#datepicker_start").datepicker('getDate');
+					var end = $("#datepicker_end").datepicker('getDate');
+					if(start!=0&&start!=null&&end!=0&&end!=null){
+						var days = (end - start)/1000/60/60/24;
+						$("#price").val(days*90000);
+						
+					}
 				});
 			});
 </script>
