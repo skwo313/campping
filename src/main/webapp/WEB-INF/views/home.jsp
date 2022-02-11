@@ -131,11 +131,10 @@ html, body {
 }
 
 .logo {
-	position: absolute;
-	left: 218px;
-	top: 10px;
-	width: 80px;
-	height: auto;
+	position: fixed;
+    left: 275px;
+    height: 106px;
+    top: 16px;
 }
 
 .modalImg {
@@ -219,7 +218,7 @@ hr {
 				<div class="description1">산청 지리산 자양보 오토캠핑장</div>
 				<div class="description2">경상남도 산청군</div>
 				<div class="description3">지리산</div>
-				<div class="description4">설명 어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구</div>
+				<div class="description4">자양보 유원지 바로 옆! 천왕봉을 바라보는 산청 타프캠핑장 (글램핑타프+데크)</div>
 			</div>
 		</div>
 		<div class="camping-place" id="detail">
