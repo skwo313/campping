@@ -16,7 +16,7 @@
    
    </insert>
    
-	<select id="listPage" resultType="kr.co.vo.BoardVO" parameterType="kr.co.vo.SearchCriteria">
+	<select id="listPage" resultType="com.ssangyong.camping.vo.BoardVO" parameterType="com.ssangyong.camping.vo.SearchCriteria">
 		SELECT  BNO, 
 		        TITLE, 
 		        CONTENT,
@@ -40,7 +40,7 @@
 	</select>
 
    
-   	<select id="read" parameterType="int" resultType="kr.co.vo.BoardVO">
+   	<select id="read" parameterType="int" resultType="com.ssangyong.camping.vo.BoardVO">
 		SELECT	BNO
 			  , TITLE
 			  , CONTENT
@@ -50,7 +50,7 @@
 		 WHERE BNO = #{bno}
 	</select>
 	
-	<select id="listCount" parameterType="kr.co.vo.SearchCriteria" resultType="int">
+	<select id="listCount" parameterType="com.ssangyong.camping.vo.SearchCriteria" resultType="int">
 		SELECT COUNT(BNO)
 		   FROM CAMPING_BOARD_LIST
 		   WHERE 1=1
@@ -67,7 +67,7 @@
 		</if>
 	</sql>
 	
-   <update id="update" parameterType="kr.co.vo.BoardVO">
+   <update id="update" parameterType="com.ssangyong.camping.vo.BoardVO">
 		UPDATE CAMPING_BOARD_LIST
 		   SET TITLE    =   #{title},
 		   	   CONTENT  =   #{content}
