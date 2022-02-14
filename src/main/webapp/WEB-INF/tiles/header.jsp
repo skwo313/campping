@@ -3,6 +3,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<div class="container">
+
 		<a class="navbar-brand" href="#" onclick="location.href='/camping'"><img
 			alt="" width="" height="50px"
 			src="${pageContext.request.contextPath}/img/logo.png"></a>
@@ -10,6 +11,10 @@
 			data-bs-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
 			aria-label="Toggle navigation">
+
+		<a class="navbar-brand" href="testPage.do"><img alt="" width="" height="50px" class="logo" src="${pageContext.request.contextPath}/img/logo.png"></a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
