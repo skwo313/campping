@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*"%>
 <%@ page session="false"%>
 <!-- <html>
@@ -24,169 +25,16 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="css/datepicker.css">
-<style>
-html, body {
-	width: 100%;
-	height: 100%;
-}
+<link rel="stylesheet" href="css/main.css">
 
-.main {
-	display: flex;
-}
-
-#map {
-	display: flex;
-	width: 100%;
-	height: 80vh;
-}
-
-#search-tab {
-	display: flex;
-	-webkit-box-align: center;
-	align-items: center;
-	width: 100%;
-	height: 72px;
-	padding: 0px 40px;
-	border-radius: 2px;
-	box-shadow: rgb(0 0 0/ 10%) 0px 7px 15px -2px;
-	background-color: rgb(255, 255, 255);
-}
-
-#search-text {
-	flex: 1 1 0%;
-	height: 27px;
-	margin-left: 20px;
-	font-size: 18px;
-	border: 0px;
-	background-color: transparent;
-}
-
-.list {
-	display: flex;
-	flex-direction: column;
-	min-width: 470px;
-	height: 80vh;
-	overflow: scroll;
-}
-
-.camping-place {
-	display: flex;
-	padding: 10px 15px;
-	cursor: pointer;
-}
-
-.bg-dark {
-	background: url(img/bak.jpg);
-	background-size: cover;
-	background-blend-mode: color-dodge;
-}
-
-.description1 {
-	width: 280px;
-	padding: 0 5px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	font-size: 20px;
-	font-weight: bolder;
-}
-
-.description2 {
-	width: 280px;
-	padding: 0 5px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	font-size: 15px;
-}
-
-.description3 {
-	width: 280px;
-	padding: 0 5px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	font-size: 15px;
-}
-
-.description4 {
-	width: 280px;
-	padding: 0 5px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	font-size: 12px;
-}
-
-.campingImg {
-	border-radius: 17px;
-	width: 150px;
-	height: 150px;
-}
-
-.descriptions {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-}
-
-.logo {
-	position: fixed;
-    left: 275px;
-    height: 106px;
-    top: 16px;
-}
-
-.modalImg {
-	width: 100%;
-	border-radius: 18px;
-}
-
-.detailDescription {
-	font-weight: bolder;
-	font-size: 21px;
-	padding-left: 4px;
-}
-
-.form-box {
-	padding-top: 7px;
-	padding-left: 5px;
-}
-
-hr {
-	width: 98%;
-	height: 2px !important;
-	margin: 18px 0px 18px 9px;
-	border: ridge;
-}
-
-::-webkit-scrollbar {
-	width: 20px;
-}
-
-::-webkit-scrollbar-track {
-	background-color: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-	background-color: #d6dee1;
-	border-radius: 20px;
-	border: 6px solid transparent;
-	background-clip: content-box;
-}
-
-::-webkit-scrollbar-thumb:hover {
-	background-color: #a8bbbf;
-}
-</style>
 <header class="bg-dark py-5">
 	<div class="container px-4">
 		<div class="row gx-5 justify-content-center">
 			<div class="col-lg-6">
 				<div class="text-center my-4">
 					<h2 class="display-5 fw-bolder text-white mb-2">어느 캠핑장을 찾으시나요?</h2>
-					<form>
-						<label id="search-tab"> <input id="search-text" class="form-control" placeholder="지역 또는 이름을 입력하세요." />
+					<form method="post">
+						<label id="search-tab"> <input id="search-text" name="search" class="form-control" placeholder="지역 또는 이름을 입력하세요." />
 						</label>
 					</form>
 				</div>
@@ -200,7 +48,8 @@ hr {
 	<div class="list">
 		<div class="form-box">
 			<select class="form-select">
-				<option>서울/경기</option>
+				<option>전체</option>
+				<option>경기도</option>
 				<option>충청남도</option>
 				<option>충청북도</option>
 				<option>강원도</option>
@@ -210,94 +59,20 @@ hr {
 				<option>경상북도</option>
 			</select>
 		</div>
+		<c:forEach items="${list}" var = "list">
 		<div class="camping-place" id="detail">
+			
 			<div style="display: flex;">
-				<img class="campingImg" alt="" src="img/camping-test.jpg">
+				<img class="campingImg" alt="" src="${list.camping_image }">
 			</div>
 			<div class="descriptions">
-				<div class="description1">산청 지리산 자양보 오토캠핑장</div>
-				<div class="description2">경상남도 산청군</div>
-				<div class="description3">지리산</div>
-				<div class="description4">자양보 유원지 바로 옆! 천왕봉을 바라보는 산청 타프캠핑장 (글램핑타프+데크)</div>
+				<div class="description1">${list.camping_name}</div>
+				<div class="description2">${list.camping_loc}</div>
+				<div class="description3"><fmt:formatNumber value="${list.camping_price}"/>원</div>
+				<div class="description4">${list.camping_des}</div>
 			</div>
 		</div>
-		<div class="camping-place" id="detail">
-			<div style="display: flex;">
-				<img class="campingImg" alt="" src="img/camping-test.jpg">
-			</div>
-			<div class="descriptions">
-				<div class="description1">산청 지리산 자양보 오토캠핑장</div>
-				<div class="description2">경상남도 산청군</div>
-				<div class="description3">지리산</div>
-				<div class="description4">설명 어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구</div>
-			</div>
-		</div>
-		<div class="camping-place" id="detail">
-			<div style="display: flex;">
-				<img class="campingImg" alt="" src="img/camping-test.jpg">
-			</div>
-			<div class="descriptions">
-				<div class="description1">산청 지리산 자양보 오토캠핑장</div>
-				<div class="description2">경상남도 산청군</div>
-				<div class="description3">지리산</div>
-				<div class="description4">설명 어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구</div>
-			</div>
-		</div>
-		<div class="camping-place" id="detail">
-			<div style="display: flex;">
-				<img class="campingImg" alt="" src="img/camping-test.jpg">
-			</div>
-			<div class="descriptions">
-				<div class="description1">산청 지리산 자양보 오토캠핑장</div>
-				<div class="description2">경상남도 산청군</div>
-				<div class="description3">지리산</div>
-				<div class="description4">설명 어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구</div>
-			</div>
-		</div>
-		<div class="camping-place" id="detail">
-			<div style="display: flex;">
-				<img class="campingImg" alt="" src="img/camping-test.jpg">
-			</div>
-			<div class="descriptions">
-				<div class="description1">산청 지리산 자양보 오토캠핑장</div>
-				<div class="description2">경상남도 산청군</div>
-				<div class="description3">지리산</div>
-				<div class="description4">설명 어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구</div>
-			</div>
-		</div>
-		<div class="camping-place" id="detail">
-			<div style="display: flex;">
-				<img class="campingImg" alt="" src="img/camping-test.jpg">
-			</div>
-			<div class="descriptions">
-				<div class="description1">산청 지리산 자양보 오토캠핑장</div>
-				<div class="description2">경상남도 산청군</div>
-				<div class="description3">지리산</div>
-				<div class="description4">설명 어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구</div>
-			</div>
-		</div>
-		<div class="camping-place" id="detail">
-			<div style="display: flex;">
-				<img class="campingImg" alt="" src="img/camping-test.jpg">
-			</div>
-			<div class="descriptions">
-				<div class="description1">산청 지리산 자양보 오토캠핑장</div>
-				<div class="description2">경상남도 산청군</div>
-				<div class="description3">지리산</div>
-				<div class="description4">설명 어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구</div>
-			</div>
-		</div>
-		<div class="camping-place" id="detail">
-			<div style="display: flex;">
-				<img class="campingImg" alt="" src="img/camping-test.jpg">
-			</div>
-			<div class="descriptions">
-				<div class="description1">산청 지리산 자양보 오토캠핑장</div>
-				<div class="description2">경상남도 산청군</div>
-				<div class="description3">지리산</div>
-				<div class="description4">설명 어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구어쩌구 저쩌구</div>
-			</div>
-		</div>
+		</c:forEach>
 	</div>
 
 	<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -318,7 +93,7 @@ hr {
 					<p class="detailDescription">상세 설명</p>
 					<p>자양보 유원지 바로 옆! 천왕봉을 바라보는 산청 타프캠핑장 (글램핑타프+데크)</p>
 					<p>캠핑톡 고객센터 : 070-4336-1824 (예약관련문의)</p>
-					<p>산청 지리산 자양보 오토캠핑장 : 010-4143-3005 (현장문의</p>
+					<p>산청 지리산 자양보 오토캠핑장 : 010-4143-3005 (현장문의)</p>
 					<p>사이트 주소: http://jyb-camp.com/default/</p>
 					<hr>
 					<p class="detailDescription">예약 정보</p>
@@ -425,6 +200,10 @@ hr {
 		map.setCenter(locPosition);
 	}
 	/*-----------------------------------------------------------*/
+/* 	var markers = [];
+	<c:forEach items="${list}" var="list">
+	addMarker(new kakao.maps.LatLng(${list.camping_locationx},${list.camping_locationy}));
+	</c:forEach> */
 	var markerPosition = new kakao.maps.LatLng(35.267374619147226,
 			127.85531231177431);
 
