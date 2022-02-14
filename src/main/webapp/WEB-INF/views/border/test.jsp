@@ -38,7 +38,7 @@
 
 <body>
 <div class="jumbotron text-center">
-  <h2 data-toggle="modal" data-target="#exampleModalCenter">타이틀</h2>
+  <h2 data-toggle="modal" data-target="#exampleModalCenter">테스트</h2>
 
 </div>
 <div class="container">
