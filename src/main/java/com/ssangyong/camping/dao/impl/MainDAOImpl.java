@@ -1,5 +1,6 @@
 package com.ssangyong.camping.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -17,7 +18,12 @@ public class MainDAOImpl implements MainDAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<CampingInfoVO> list() throws Exception{
-		return sqlSession.selectList("mainMapper.list");
+	public List<CampingInfoVO> list(HashMap<String, Object> hashMap) throws Exception{
+		System.out.println(hashMap);
+		return sqlSession.selectList("mainMapper.list", hashMap);
 	}
+//	@Override
+//	public List<CampingInfoVO> searchList(String keyword) throws Exception{
+//		return sqlSession.selectList("mainMapper.searchList", keyword);
+//	}
 }

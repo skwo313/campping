@@ -7,6 +7,7 @@ public class CampingInfoVO {
 	private String camping_image;
 	private String camping_des;
 	private String camping_loc;
+	private String camping_do;
 	private String camping_locationx;
 	private String camping_locationy;
 	public CampingInfoVO() {
@@ -14,7 +15,8 @@ public class CampingInfoVO {
 		// TODO Auto-generated constructor stub
 	}
 	public CampingInfoVO(int camping_no, String camping_name, int camping_price, String camping_image,
-			String camping_des, String camping_loc, String camping_locationx, String camping_locationy) {
+			String camping_des, String camping_loc, String camping_do, String camping_locationx,
+			String camping_locationy) {
 		super();
 		this.camping_no = camping_no;
 		this.camping_name = camping_name;
@@ -22,6 +24,7 @@ public class CampingInfoVO {
 		this.camping_image = camping_image;
 		this.camping_des = camping_des;
 		this.camping_loc = camping_loc;
+		this.camping_do = camping_do;
 		this.camping_locationx = camping_locationx;
 		this.camping_locationy = camping_locationy;
 	}
@@ -61,6 +64,12 @@ public class CampingInfoVO {
 	public void setCamping_loc(String camping_loc) {
 		this.camping_loc = camping_loc;
 	}
+	public String getCamping_do() {
+		return camping_do;
+	}
+	public void setCamping_do(String camping_do) {
+		this.camping_do = camping_do;
+	}
 	public String getCamping_locationx() {
 		return camping_locationx;
 	}
@@ -73,5 +82,4 @@ public class CampingInfoVO {
 	public void setCamping_locationy(String camping_locationy) {
 		this.camping_locationy = camping_locationy;
 	}
-	
 }

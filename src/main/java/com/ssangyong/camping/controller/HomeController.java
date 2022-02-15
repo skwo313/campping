@@ -1,12 +1,13 @@
 package com.ssangyong.camping.controller;
 
+import java.util.HashMap;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,22 +27,46 @@ public class HomeController {
 	
 	/* 메인화면 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model) throws Exception{
-		logger.info("list");
-		
-		model.addAttribute("list",service.list());
+	public String home(@RequestParam(value="keyword", required=false, defaultValue="") String keyword,
+						@RequestParam(value="select", required=false, defaultValue="") String select,
+						Model model) throws Exception{
+		logger.info("Home");
+		HashMap<String, Object> hashMap = new HashMap<>();
+		hashMap.put("select",select);
+		hashMap.put("keyword",keyword);
+
+		model.addAttribute("list",service.list(hashMap));
 		return "home.page";
 	}
-	
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public String Search(@RequestParam(value="keyword", required=false, defaultValue="") String keyword,
+						@RequestParam(value="select", required=false, defaultValue="") String select,
+						Model model) throws Exception{
+		logger.info("Search");
+		HashMap<String, Object> hashMap = new HashMap<>();
+		hashMap.put("keyword",keyword);
+		hashMap.put("select",select);
+
+		model.addAttribute("list",service.list(hashMap));
+		return "home.page";
+	}
 	/* 검색창 검색 */
-	@PostMapping("/search")
-	public String upload(@RequestParam("search") String search,
-						 Model d
-			            ) {
-		System.out.println("내용:"+search);
-		
-		return "home.page";
-	}
+//	@RequestMapping(value = "/search", method = RequestMethod.POST)
+//	public String search(@RequestParam("keyword") String keyword,
+//						 Model model
+//			            ) {
+//		if (keyword == null)
+//			keyword="";
+//
+//		logger.info("Search");
+//		try {
+//			model.addAttribute("searchList",service.searchList(keyword));
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return "home.page";
+//	}
 	
 	/* select 검색 */
 

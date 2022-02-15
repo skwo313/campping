@@ -9,7 +9,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>캠핑에 미치다</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
          
 
@@ -33,8 +32,8 @@
 			<div class="col-lg-6">
 				<div class="text-center my-4">
 					<h2 class="display-5 fw-bolder text-white mb-2">어느 캠핑장을 찾으시나요?</h2>
-					<form method="post">
-						<label id="search-tab"> <input id="search-text" name="search" class="form-control" placeholder="지역 또는 이름을 입력하세요." />
+					<form method="post" action="/camping/search">
+						<label id="search-tab"> <input id="search-text" name="keyword" class="form-control" placeholder="지역 또는 이름을 입력하세요." />
 						</label>
 					</form>
 				</div>
@@ -59,78 +58,78 @@
 				<option>경상북도</option>
 			</select>
 		</div>
-		<c:forEach items="${list}" var = "list">
-		<div class="camping-place" id="detail">
-			
-			<div style="display: flex;">
-				<img class="campingImg" alt="" src="${list.camping_image }">
+		<c:forEach items="${list}" var="list" varStatus="vs">
+			<div class="camping-place" id="detail${vs.index}">
+				<div style="display: flex;">
+					<img class="campingImg" alt="" src="${list.camping_image }">
+				</div>
+				<div class="descriptions">
+					<div class="description1">${list.camping_name}</div>
+					<div class="description2">${list.camping_loc}</div>
+					<div class="description3">
+						<fmt:formatNumber value="${list.camping_price}" />
+						원
+					</div>
+					<div class="description4">${list.camping_des}</div>
+				</div>
 			</div>
-			<div class="descriptions">
-				<div class="description1">${list.camping_name}</div>
-				<div class="description2">${list.camping_loc}</div>
-				<div class="description3"><fmt:formatNumber value="${list.camping_price}"/>원</div>
-				<div class="description4">${list.camping_des}</div>
-			</div>
-		</div>
 		</c:forEach>
 	</div>
-
-	<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">산청 지리산 자양보 오토캠핑장</h5>
-					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">X</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<img class="modalImg" alt="" src="img/camping-test.jpg">
-					<hr>
-					<p class="detailDescription">위치</p>
-					<p>경상남도 산청군 시천면 남명로 392-23</p>
-					<hr>
-					<p class="detailDescription">상세 설명</p>
-					<p>자양보 유원지 바로 옆! 천왕봉을 바라보는 산청 타프캠핑장 (글램핑타프+데크)</p>
-					<p>캠핑톡 고객센터 : 070-4336-1824 (예약관련문의)</p>
-					<p>산청 지리산 자양보 오토캠핑장 : 010-4143-3005 (현장문의)</p>
-					<p>사이트 주소: http://jyb-camp.com/default/</p>
-					<hr>
-					<p class="detailDescription">예약 정보</p>
-					<form>
-
-						<div style="display: flex;">
-							<input type="text" id="datepicker_start" class="form-control" value="" placeholder="체크인" />
-							<span style="font-size: x-large;">~</span>
-							<input type="text" id="datepicker_end" class="form-control" value="" placeholder="체크아웃" />
-						</div>
-						<br>
-						<input type="number" id="person" class="form-control" value="" placeholder="인원수" />
-						<p class="detailDescription" style="padding-top: 7px; text-align: -webkit-right; font-weight: normal;">90000원 / 1박</p>
+	<c:forEach items="${list}" var="list" varStatus="vs">
+		<div class="modal fade" id="detailModal${vs.index}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">${list.camping_name}</h5>
+						<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">X</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<img class="modalImg" alt="" src="${list.camping_image }">
 						<hr>
-						<p class="detailDescription">결제 금액</p>
-						<div style="display: flex; justify-content: flex-end;">
-							<input type="text" readonly class="form-control-plaintext" value="" id="price" style="width: 15%; font-size: 19px; text-align: -webkit-right;" />
-							<span style="padding-top: 3px; padding-left: 3px; font-size: x-large;">원</span>
-						</div>
+						<p class="detailDescription">위치</p>
+						<p>${list.camping_loc}</p>
+						<hr>
+						<p class="detailDescription">상세 설명</p>
+						<p>${list.camping_des}</p>
+						<hr>
+						<p class="detailDescription">예약 정보</p>
+						<form>
+							<div style="display: flex;">
+								<input type="text" id="datepicker_start" class="form-control" value="" placeholder="체크인" />
+								<span style="font-size: x-large;">~</span>
+								<input type="text" id="datepicker_end" class="form-control" value="" placeholder="체크아웃" />
+							</div>
+							<br>
+							<input type="number" id="person" class="form-control" value="" placeholder="인원수" />
+							<p class="detailDescription" style="padding-top: 7px; text-align: -webkit-right; font-weight: normal;"><fmt:formatNumber value="${list.camping_price}" /> / 1박</p>
+							<hr>
+							<p class="detailDescription">결제 금액</p>
+							<div style="display: flex; justify-content: flex-end;">
+								<input type="text" readonly class="form-control-plaintext" value="" id="price" style="width: 15%; font-size: 19px; text-align: -webkit-right;" />
+								<span style="padding-top: 3px; padding-left: 3px; font-size: x-large;">원</span>
+							</div>
 
-					</form>
+						</form>
 
-				</div>
-				<div class="modal-footer">
-					<a class="btn" id="modalY" href="#">예약하기</a>
-					<!-- <button class="btn" type="button" data-dismiss="modal">아니오</button> -->
+					</div>
+					<div class="modal-footer">
+						<a class="btn" id="modalY" href="#">예약하기</a>
+						<!-- <button class="btn" type="button" data-dismiss="modal">아니오</button> -->
+					</div>
 				</div>
 			</div>
+			<script type="text/javascript">
+				$("#detail${vs.index}").click(function(e) {
+					e.preventDefault();
+					$('#detailModal${vs.index}').modal("show");
+				});
+			</script>
 		</div>
-	</div>
+	</c:forEach>
 </div>
-<script type="text/javascript">
-	$('#detail').click(function(e) {
-		e.preventDefault();
-		$('#detailModal').modal("show");
-	});
-</script>
+
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=06bd11d6b565f348aeb6f7ee8032c658"></script>
 <script type="text/javascript">
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
@@ -140,12 +139,12 @@
 	//지도의 레벨(확대, 축소 정도)
 	};
 	var imageSrc = 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbqMXOH%2FbtrsSki0YsO%2FuVMoCkyqdKBh0k69CjnIl1%2Fimg.png', // 마커이미지의 주소입니다    
-	imageSize = new kakao.maps.Size(35, 48), // 마커이미지의 크기입니다
+	imageSize = new kakao.maps.Size(35, 48), // 마커이미지의 크기
 	imageOption = {
 		offset : new kakao.maps.Point(17.5, 100)
-	}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+	}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정
 
-	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성
 	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize,
 			imageOption)
 	// 마커를 생성합니다
@@ -159,22 +158,22 @@
 			var lat = position.coords.latitude, // 위도
 			lon = position.coords.longitude; // 경도
 
-			var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-			message = '<div style="padding:5px;">사용자의 위치</div>'; // 인포윈도우에 표시될 내용입니다
+			var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성
+			message = '<div style="padding:5px;">사용자의 위치</div>'; // 인포윈도우에 표시될 내용
 
 			// 마커와 인포윈도우를 표시합니다
 			displayMarker(locPosition, message);
 
 		});
 
-	} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+	} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정
 
 		var locPosition = new kakao.maps.LatLng(33.450701, 126.570667), message = 'geolocation을 사용할수 없어요..'
 
 		displayMarker(locPosition, message);
 	}
 
-	// 지도에 마커와 인포윈도우를 표시하는 함수입니다
+	// 지도에 마커와 인포윈도우를 표시하는 함수
 	function displayMarker(locPosition, message) {
 
 		// 마커를 생성합니다
