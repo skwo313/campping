@@ -4,12 +4,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
-<!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
 
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -75,23 +73,37 @@
  			$("#fileNameDel").attr("value", fileNameArry);
  		}
 	</script>
+<style>
+body {
+	padding-top: 70px;
+	padding-bottom: 30px;
+}
+
+table {
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
 <body>
 
-	<div id="container">
+	<div id="root">
 		<header>
-			<h1>게시판</h1>
+			<table>
+				<tbody>
+					<tr>
+						<td>
+							<h1>수정</h1>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</header>
-		<hr />
 
-		<div>
-			<%@include file="nav.jsp"%>
-		</div>
-		<hr />
 
 		<section id="container">
 			<form name="updateForm" role="form" method="post"
 				action="/board/update" enctype="multipart/form-data">
-
 				<input type="hidden" name="bno" value="${update.bno}"
 					readonly="readonly" /> <input type="hidden" id="page" name="page"
 					value="${scri.page}"> <input type="hidden" id="perPageNum"
@@ -101,55 +113,66 @@
 					id="keyword" name="keyword" value="${scri.keyword}"> <input
 					type="hidden" id="fileNoDel" name="fileNoDel[]" value=""> <input
 					type="hidden" id="fileNameDel" name="fileNameDel[]" value="">
+				<table>
+					<tbody>
+						<tr>
+							<td>
+							<div class="mb-3">
+							<label for="title">제목</label><input type="text"
+								id="title" name="title" value="${update.title}" class="form-control"
+								title="제목을 입력하세요." />
+							</div>	
+								</td>
+						</tr>
+						<tr>
+							<td>
+							<div class="mb-3">
+							<label for="content">내용</label> <textarea id="content"
+									name="content" class="form-control" title="내용을 입력하세요."><c:out
+										value="${update.content}" /></textarea>
+										</div>
+										</td>
+						</tr>
+						<tr>
+							<td>
+							<div class="mb-3">
+							<label for="writer">작성자</label><input type="text"
+								id="writer" name="writer" class="form-control" value="${update.writer}"
+								readonly="readonly" />
+								</div>
+								</td>
+						</tr>
+						<tr>
+							<td><label for="regdate">작성날짜</label> <fmt:formatDate
+									value="${update.regdate}" pattern="yyyy-MM-dd" /></td>
+						</tr>
+						<tr>
+							<td id="fileIndex"><c:forEach var="file" items="${file}"
+									varStatus="var">
+									<div>
+										<input type="hidden" id="FILE_NO" name="FILE_NO_${var.index}"
+											value="${file.FILE_NO }"> <input type="hidden"
+											id="FILE_NAME" name="FILE_NAME" value="FILE_NO_${var.index}">
+										<a href="#" id="fileName" onclick="return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)
+										<button id="fileDel"
+											onclick="fn_del('${file.FILE_NO}','FILE_NO_${var.index}');"
+											type="button" class="btn btn-primary">삭제</button>
+										<br>
+									</div>
+								</c:forEach></td>
+						</tr>
 
-
-				<div class="form-group">
-					<label for="title" class="col-sm-2 control-label">제목</label> <input
-						type="text" name="title" class="form-control"
-						value="${update.title}" class="chk" readonly="readonly" />
-				</div>
-
-				<div class="form-group">
-					<label for="content">내용</label>
-					<textarea id="content" name="content" class="form-control"
-						title="내용을 입력하세요.">
-									<c:out value="${update.content}" /></textarea>
-				</div>
-
-				<div class="form-group">
-
-					<label for="writer">작성자</label> <input type="text"
-						class="form-control" id="writer" name="writer"
-						value="${update.writer}" readonly="readonly" />
-				</div>
-
-				<div class="form-group">
-					<label for="regdate">작성날짜</label>
-					<fmt:formatDate value="${update.regdate}" pattern="yyyy-MM-dd" />
-				</div>
-
-				<td id="fileIndex"><c:forEach var="file" items="${file}"
-						varStatus="var">
-						<div>
-							<input type="hidden" id="FILE_NO" name="FILE_NO_${var.index}"
-								value="${file.FILE_NO }"> <input type="hidden"
-								id="FILE_NAME" name="FILE_NAME" value="FILE_NO_${var.index}">
-							<a href="#" id="fileName" onclick="return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)
-							<button id="fileDel"
-								onclick="fn_del('${file.FILE_NO}','FILE_NO_${var.index}');"
-								type="button" class="delete_btn btn-danger">삭제</button>
-							<br>
-						</div>
-					</c:forEach>
-
-					<div>
-						<button type="button" class="update_btn btn btn-warning">저장</button>
-						<button type="button" class="cancel_btn btn btn-danger">취소</button>
-						<button type="button" class="fileAdd_btn btn btn-primary">파일추가</button>
-					</div>
+					<tr>
+					<td>
+					<button type="button" class="btn btn-primary update_btn">저장</button>
+					<button type="button" class="btn btn-primary cancel_btn">취소</button>
+					<button type="button" class="btn btn-primary fileAdd_btn">파일추가</button>
+					</td>
+					</tr>
+					</tbody>
+				</table>
 			</form>
 		</section>
-		<hr />
 	</div>
 </body>
 </html>

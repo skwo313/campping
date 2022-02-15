@@ -4,96 +4,110 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
-<!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
 
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
 <title>게시판</title>
 </head>
 
 <script type="text/javascript">
-		
-		$(document).ready(function(){
-			var formObj = $("form[name='readForm']");
-			
-			// 수정 
-			$(".update_btn").on("click", function(){
-				formObj.attr("action", "/board/updateView");
-				formObj.attr("method", "get");
-				formObj.submit();				
-			})
-			
-			// 삭제
-			$(".delete_btn").on("click", function(){
-				
-				var deleteYN = confirm("삭제하시겠습니까?");
-				if(deleteYN == true){
-					
-				formObj.attr("action", "/board/delete");
-				formObj.attr("method", "post");
-				formObj.submit();
-					
-				}
-			})
-			
-			// 목록
-			$(".list_btn").on("click", function(){
-				
-				location.href = "/board/list?page=${scri.page}"
-						      +"&perPageNum=${scri.perPageNum}"
-						      +"&searchType=${scri.searchType}&keyword=${scri.keyword}";
-			})
-			
-			$(".replyWriteBtn").on("click", function(){
-				var formObj = $("form[name='replyForm']");
-				formObj.attr("action", "/board/replyWrite");
-				formObj.submit();
-			});
-			
-			//댓글 수정 View
-			$(".replyUpdateBtn").on("click", function(){
-				location.href = "/board/replyUpdateView?bno=${read.bno}"
-								+ "&page=${scri.page}"
-								+ "&perPageNum=${scri.perPageNum}"
-								+ "&searchType=${scri.searchType}"
-								+ "&keyword=${scri.keyword}"
-								+ "&rno="+$(this).attr("data-rno");
-			});
-			
-			//댓글 삭제 View
-			$(".replyDeleteBtn").on("click", function(){
-				location.href = "/board/replyDeleteView?bno=${read.bno}"
-					+ "&page=${scri.page}"
-					+ "&perPageNum=${scri.perPageNum}"
-					+ "&searchType=${scri.searchType}"
-					+ "&keyword=${scri.keyword}"
-					+ "&rno="+$(this).attr("data-rno");
-			});
-		})
-		function fn_fileDown(fileNo){
-			var formObj = $("form[name='readForm']");
-			$("#FILE_NO").attr("value", fileNo);
-			formObj.attr("action", "/board/fileDown");
-			formObj.submit();
-		}
-	</script>
+	$(document)
+			.ready(
+					function() {
+						var formObj = $("form[name='readForm']");
+
+						// 수정 
+						$(".update_btn").on("click", function() {
+							formObj.attr("action", "/board/updateView");
+							formObj.attr("method", "get");
+							formObj.submit();
+						})
+
+						// 삭제
+						$(".delete_btn").on("click", function() {
+
+							var deleteYN = confirm("삭제하시겠습니까?");
+							if (deleteYN == true) {
+
+								formObj.attr("action", "/board/delete");
+								formObj.attr("method", "post");
+								formObj.submit();
+
+							}
+						})
+
+						// 목록
+						$(".list_btn")
+								.on(
+										"click",
+										function() {
+
+											location.href = "/board/list?page=${scri.page}"
+													+ "&perPageNum=${scri.perPageNum}"
+													+ "&searchType=${scri.searchType}&keyword=${scri.keyword}";
+										})
+
+						$(".replyWriteBtn").on("click", function() {
+							var formObj = $("form[name='replyForm']");
+							formObj.attr("action", "/board/replyWrite");
+							formObj.submit();
+						});
+
+						//댓글 수정 View
+						$(".replyUpdateBtn")
+								.on(
+										"click",
+										function() {
+											location.href = "/board/replyUpdateView?bno=${read.bno}"
+													+ "&page=${scri.page}"
+													+ "&perPageNum=${scri.perPageNum}"
+													+ "&searchType=${scri.searchType}"
+													+ "&keyword=${scri.keyword}"
+													+ "&rno="
+													+ $(this).attr("data-rno");
+										});
+
+						//댓글 삭제 View
+						$(".replyDeleteBtn")
+								.on(
+										"click",
+										function() {
+											location.href = "/board/replyDeleteView?bno=${read.bno}"
+													+ "&page=${scri.page}"
+													+ "&perPageNum=${scri.perPageNum}"
+													+ "&searchType=${scri.searchType}"
+													+ "&keyword=${scri.keyword}"
+													+ "&rno="
+													+ $(this).attr("data-rno");
+										});
+					})
+	function fn_fileDown(fileNo) {
+		var formObj = $("form[name='readForm']");
+		$("#FILE_NO").attr("value", fileNo);
+		formObj.attr("action", "/board/fileDown");
+		formObj.submit();
+	}
+</script>
+<style>
+
+table {
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
 
 <body>
 	<div class="container">
 		<header>
 			<h1>게시판</h1>
 		</header>
-		<hr />
-
-		<div>
-			<%@include file="nav.jsp"%>
-		</div>
 
 		<section id="container">
 			<form name="readForm" role="form" method="post">
@@ -126,7 +140,7 @@
 				<label for="regdate" class="col-sm-2 control-label">작성날짜</label>
 				<fmt:formatDate value="${read.regdate}" pattern="yyyy-MM-dd" />
 			</div>
-			<hr>
+			
 			<span>파일 목록</span>
 			<div class="form-group" style="border: 1px solid #dbdbdb;">
 				<c:forEach var="file" items="${file}">
@@ -134,7 +148,7 @@
 						onclick="fn_fileDown('${file.FILE_NO}'); return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)<br>
 				</c:forEach>
 			</div>
-			<hr>
+			
 			<div>
 				<button type="button" class="update_btn btn btn-warning">수정</button>
 				<button type="button" class="delete_btn btn btn-danger">삭제</button>
@@ -195,7 +209,7 @@
 				</div>
 			</form>
 		</section>
-		<hr />
+	
 	</div>
 </body>
 </html>
