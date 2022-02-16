@@ -119,7 +119,7 @@ table {
 			</div>
 			<div class="form-group">
 				<label for="content" class="col-sm-2 control-label">내용</label>
-				<textarea id="content" name="content" class="form-control"
+				<textarea id="content" name="content" class="form-control" rows="10"
 					readonly="readonly"><c:out value="${read.content}" /></textarea>
 			</div>
 			<div class="form-group">
@@ -131,14 +131,7 @@ table {
 				<label for="regdate" class="col-sm-2 control-label">작성날짜</label>
 				<fmt:formatDate value="${read.regdate}" pattern="yyyy-MM-dd" />
 			</div>
-			
-			<span>파일 목록</span>
-			<div class="form-group" style="border: 1px solid #dbdbdb;">
-				<c:forEach var="file" items="${file}">
-					<a href="C:\\camping\\file"
-						onclick="fn_fileDown('${file.FILE_NO}'); return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)<br>
-				</c:forEach>
-			</div>
+			<br>
 			
 			<div>
 				<button type="button" class="update_btn btn btn-warning">수정</button>
@@ -192,12 +185,13 @@ table {
 							class="form-control" />
 					</div>
 				</div>
-
+				<br>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="button" class="replyWriteBtn btn btn-success">작성</button>
 					</div>
 				</div>
+				<br>
 			</form>
 		</section>
 	

@@ -12,17 +12,14 @@
 	<body>
 		<div class="container">
 			<header>
-				<h1> 게시판</h1>
+				<h1>게시판</h1> 
 			</header>		 
-			<div>
-				<%@include file="nav.jsp" %>
-			</div>
-			
+
 			<section id="container">
 				<form role="form" method="get">
 					<table class="table table-hover">
 						<thead>
-							<tr><th>번호</th><th>제목</th><th>작성자</th><th>등록일</th></tr>
+							<tr><th>번호</th><th>제목</th><th>작성자</th><th>등록일</th><th>조회수</th></tr>
 						</thead>
 						
 						<c:forEach items="${list}" var = "list">
@@ -33,9 +30,9 @@
 								</td>
 								<td><c:out value="${list.writer}" /></td>
 								<td><fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd"/></td>
+								<td><c:out value="${list.hit }" /></td>
 							</tr>
 						</c:forEach>
-						
 					</table>
 					<div class="search row">
 						<div class="col-xs-2 col-sm-2">
@@ -64,25 +61,33 @@
 							 });   
 						</script>
 					</div>
-					
-					<div id="paging">
-					<nav aria-label="..." style="text-align: center;">
-						<ul class="pagination">
-							<c:if test="${pageMaker.prev}">
-								<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
-							</c:if> 
-							
-							<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-								<li <c:out value="${pageMaker.cri.page == idx ? 'class=info' : ''}" />>
-								<a href="list${pageMaker.makeSearch(idx)}">${idx}</a></li>
-							</c:forEach>
-							
-							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-								<li><a href="list${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
-							</c:if> 
-						</ul>
-					</nav>
-					</div>
-				</form>
+					<br>
+				<div class="col-md-offset-3">
+					<ul class="pagination">
+						<c:if test="${pageMaker.prev}">
+							<li><a
+								href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+						</c:if>
+
+						<c:forEach begin="${pageMaker.startPage}"
+							end="${pageMaker.endPage}" var="idx">
+							<li
+								<c:out value="${pageMaker.cri.page == idx ? 'class=info' : ''}" />>
+								<a href="list${pageMaker.makeSearch(idx)}">${idx}</a>
+							</li>
+						</c:forEach>
+
+						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+							<li><a
+								href="list${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+						</c:if>
+						<div>
+						<%@include file="nav.jsp"%>
+						</div>
+					</ul>
+				</div>
+			</form>
 			</section>
 		</div>
+	</body>
+</html>

@@ -72,7 +72,7 @@ table {
 							<td>
 							<div class="mb-3">
 							<label for="content">내용</label> <textarea id="content"
-									name="content" class="form-control" title="내용을 입력하세요."><c:out
+									name="content" class="form-control" rows="10" title="내용을 입력하세요."><c:out
 										value="${update.content}" /></textarea>
 										</div>
 										</td>
