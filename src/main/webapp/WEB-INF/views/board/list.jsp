@@ -3,32 +3,28 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 	<head>
+		<br><br>
 	 	<title>게시판</title>
+	 <style>
+	 </style>
+	 	
 	</head>
 	<body>
 		<div class="container">
 			<header>
 				<h1> 게시판</h1>
-			</header>
-			<hr />
-			 
+			</header>		 
 			<div>
 				<%@include file="nav.jsp" %>
 			</div>
 			
 			<section id="container">
 				<form role="form" method="get">
-					<table class="table table-hover table-striped text-center" style="border: 1px solid;">
+					<table class="table table-hover">
 						<thead>
-							<tr>
-							<td>번호</td>
-							<td>제목</td>
-							<td>작성자</td>
-							<td>등록일</td>
-							<td>조회수</td>
-							</tr>
+							<tr><th>번호</th><th>제목</th><th>작성자</th><th>등록일</th></tr>
 						</thead>
-						<tbody>	
+						
 						<c:forEach items="${list}" var = "list">
 							<tr>
 								<td><c:out value="${list.bno}" /></td>
@@ -37,29 +33,25 @@
 								</td>
 								<td><c:out value="${list.writer}" /></td>
 								<td><fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd"/></td>
-								<td><c:out value="${list.hit}" /></td>
 							</tr>
-						</c:forEach>					
-						</tbody>
+						</c:forEach>
+						
 					</table>
-					
 					<div class="search row">
 						<div class="col-xs-2 col-sm-2">
 							<select name="searchType" class="form-control">
-								<option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
 								<option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 								<option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
 								<option value="w"<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
 								<option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
 							</select>
 						</div>
-					
 						 
 						<div class="col-xs-10 col-sm-10">
 							<div class="input-group">
 								<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control"/>
 								<span class="input-group-btn">
-									<button id="searchBtn" type="button" class="btn btn-default">검색</button> 	
+									<button id="searchBtn" type="button" class="btn btn-primary">검색</button> 	
 								</span>
 							</div>
 						</div>
@@ -72,7 +64,9 @@
 							 });   
 						</script>
 					</div>
-					<div class="col-md-offset-3">
+					
+					<div id="paging">
+					<nav aria-label="..." style="text-align: center;">
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev}">
 								<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
@@ -87,9 +81,8 @@
 								<li><a href="list${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
 							</c:if> 
 						</ul>
+					</nav>
 					</div>
 				</form>
 			</section>
 		</div>
-	</body>
-</html>

@@ -49,20 +49,17 @@
 		});
 	}
 </script>
+<style>
+
+table {
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
 <body>
-	<div id="root">
-		<header>
-			<table>
-				<tbody>
-					<tr>
-						<td>
-							<h1>board Form</h1>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</header>
-		<section id="container">
+	<br><br>
+	<section id="container">
 			<form name="writeForm" id="form" method="post" action="write">
 				<table>
 					<tbody>
@@ -113,9 +110,9 @@
 							<td>
 								<button class="btn btn-primary write_btn" type="submit">작성</button>
 								<button class="btn btn-primary fileAdd_btn" type="button">파일추가</button>
+								<br><br>
 							</td>
 						</tr>
-
 					</tbody>
 				</table>
 			</form>

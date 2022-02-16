@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <title>게시판</title>
 </head>
@@ -41,22 +40,16 @@
 			}
 		}
 	</script>
+<style>
+table {
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
 <body>
-
+	<br><br>
 	<div id="root">
-		<header>
-			<table>
-				<tbody>
-					<tr>
-						<td>
-							<h1>수정</h1>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</header>
-
-
 		<section id="container">
 			<form name="updateForm" role="form" method="post" action="update">
 				<input type="hidden" name="bno" value="${update.bno}" readonly="readonly" /> 
@@ -102,6 +95,7 @@
 					<button type="button" class="btn btn-primary update_btn">저장</button>
 					<button type="button" class="btn btn-primary cancel_btn">취소</button>
 					<button type="button" class="btn btn-primary fileAdd_btn">파일추가</button>
+					<br><br>
 					</td>
 					</tr>
 					</tbody>
