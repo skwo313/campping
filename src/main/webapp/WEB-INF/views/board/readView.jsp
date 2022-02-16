@@ -4,15 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-	crossorigin="anonymous">
-
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
 <title>게시판</title>
 </head>
 
@@ -24,7 +15,7 @@
 
 						// 수정 
 						$(".update_btn").on("click", function() {
-							formObj.attr("action", "/board/updateView");
+							formObj.attr("action", "updateView");
 							formObj.attr("method", "get");
 							formObj.submit();
 						})
@@ -35,7 +26,7 @@
 							var deleteYN = confirm("삭제하시겠습니까?");
 							if (deleteYN == true) {
 
-								formObj.attr("action", "/board/delete");
+								formObj.attr("action", "delete");
 								formObj.attr("method", "post");
 								formObj.submit();
 
@@ -48,14 +39,14 @@
 										"click",
 										function() {
 
-											location.href = "/board/list?page=${scri.page}"
+											location.href = "list?page=${scri.page}"
 													+ "&perPageNum=${scri.perPageNum}"
 													+ "&searchType=${scri.searchType}&keyword=${scri.keyword}";
 										})
 
 						$(".replyWriteBtn").on("click", function() {
 							var formObj = $("form[name='replyForm']");
-							formObj.attr("action", "/board/replyWrite");
+							formObj.attr("action", "replyWrite");
 							formObj.submit();
 						});
 
@@ -64,7 +55,7 @@
 								.on(
 										"click",
 										function() {
-											location.href = "/board/replyUpdateView?bno=${read.bno}"
+											location.href = "replyUpdateView?bno=${read.bno}"
 													+ "&page=${scri.page}"
 													+ "&perPageNum=${scri.perPageNum}"
 													+ "&searchType=${scri.searchType}"
@@ -78,7 +69,7 @@
 								.on(
 										"click",
 										function() {
-											location.href = "/board/replyDeleteView?bno=${read.bno}"
+											location.href = "replyDeleteView?bno=${read.bno}"
 													+ "&page=${scri.page}"
 													+ "&perPageNum=${scri.perPageNum}"
 													+ "&searchType=${scri.searchType}"

@@ -4,13 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-	crossorigin="anonymous">
-
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <title>게시판</title>
 </head>
@@ -26,7 +20,7 @@
 			
 			$(".cancel_btn").on("click", function(){
 				event.preventDefault();
-				location.href = "/board/readView?bno=${update.bno}"
+				location.href = "readView?bno=${update.bno}"
 					   + "&page=${scri.page}"
 					   + "&perPageNum=${scri.perPageNum}"
 					   + "&searchType=${scri.searchType}"
@@ -73,18 +67,6 @@
  			$("#fileNameDel").attr("value", fileNameArry);
  		}
 	</script>
-<style>
-body {
-	padding-top: 70px;
-	padding-bottom: 30px;
-}
-
-table {
-	width: 60%;
-	margin-left: auto;
-	margin-right: auto;
-}
-</style>
 <body>
 
 	<div id="root">
@@ -103,7 +85,7 @@ table {
 
 		<section id="container">
 			<form name="updateForm" role="form" method="post"
-				action="/board/update" enctype="multipart/form-data">
+				action="update" enctype="multipart/form-data">
 				<input type="hidden" name="bno" value="${update.bno}"
 					readonly="readonly" /> <input type="hidden" id="page" name="page"
 					value="${scri.page}"> <input type="hidden" id="perPageNum"
