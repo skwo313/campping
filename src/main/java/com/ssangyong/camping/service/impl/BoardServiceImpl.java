@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ssangyong.camping.dao.BoardDAO;
 import com.ssangyong.camping.service.BoardService;
-import com.ssangyong.camping.util.FileUtils;
 import com.ssangyong.camping.vo.BoardVO;
 import com.ssangyong.camping.vo.Criteria;
 import com.ssangyong.camping.vo.SearchCriteria;
@@ -21,22 +20,13 @@ import com.ssangyong.camping.vo.SearchCriteria;
 @Service
 public class BoardServiceImpl implements BoardService {
 
-	@Resource(name = "fileUtils")
-	private FileUtils fileUtils;
-
 	@Inject
 	private BoardDAO dao;
 
 	// 게시글 작성
 	@Override
-	public void write(BoardVO boardVO, MultipartHttpServletRequest mpRequest) throws Exception {
+	public void write(BoardVO boardVO) throws Exception {
 		dao.write(boardVO);
-
-		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(boardVO, mpRequest);
-		int size = list.size();
-		for (int i = 0; i < size; i++) {
-			dao.insertFile(list.get(i));
-		}
 	}
 
 	// 게시물 목록 조회
@@ -59,8 +49,9 @@ public class BoardServiceImpl implements BoardService {
 		return dao.read(bno);
 	}
 
+	// 게시물 수정
 	@Override
-	public void update(BoardVO boardVO, String[] files, String[] fileNames) throws Exception {
+	public void update(BoardVO boardVO) throws Exception {
 
 		dao.update(boardVO);
 	}
@@ -69,40 +60,6 @@ public class BoardServiceImpl implements BoardService {
 	public void delete(int bno) throws Exception {
 
 		dao.delete(bno);
-	}
-
-	// 첨부파일 조회
-	@Override
-	public List<Map<String, Object>> selectFileList(int bno) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.selectFileList(bno);
-	}
-
-	// 첨부파일 다운로드
-	@Override
-	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.selectFileInfo(map);
-	}
-
-	// 첨부파일 수정
-	@Override
-	public void update(BoardVO boardVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest)
-			throws Exception {
-
-		dao.update(boardVO);
-
-		List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(boardVO, files, fileNames, mpRequest);
-		Map<String, Object> tempMap = null;
-		int size = list.size();
-		for (int i = 0; i < size; i++) {
-			tempMap = list.get(i);
-			if (tempMap.get("IS_NEW").equals("Y")) {
-				dao.insertFile(tempMap);
-			} else {
-				dao.updateFile(tempMap);
-			}
-		}
 	}
 
 }

@@ -43,16 +43,19 @@ public class BoardController {
 	
 	// 게시판 글 작성 화면
 	@RequestMapping(value = "/board/writeView", method = RequestMethod.GET)
-	public void writeView() throws Exception{
+	public String writeView() throws Exception{
 		logger.info("writeView");
 		
+		return "board/writeView.page";
 	}
 	
 	// 게시판 글 작성
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String write(BoardVO boardVO, MultipartHttpServletRequest mpRequest) throws Exception{
-		logger.info("write");
-		service.write(boardVO, mpRequest);
+	public String write(BoardVO boardVO) throws Exception{
+		logger.info("write"+boardVO.getTitle()); 
+		logger.info("write"+boardVO.getContent());
+		logger.info("write"+boardVO.getWriter());
+		service.write(boardVO);
 		
 		return "redirect:/board/list";
 	}
@@ -85,8 +88,6 @@ public class BoardController {
 		List<ReplyVO> replyList = replyService.readReply(boardVO.getBno());
 		model.addAttribute("replyList", replyList);
 
-		List<Map<String, Object>> fileList = service.selectFileList(boardVO.getBno());
-		model.addAttribute("file", fileList);
 		return "board/readView.page";
 	}
 	
@@ -99,26 +100,14 @@ public class BoardController {
 		model.addAttribute("update", service.read(boardVO.getBno()));
 		model.addAttribute("scri", scri);
 
-		List<Map<String, Object>> fileList = service.selectFileList(boardVO.getBno());
-		model.addAttribute("file", fileList);
 		return "board/updateView.page";
 	}
 
 	// 게시판 수정
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(BoardVO boardVO, 
-						 @ModelAttribute("scri") SearchCriteria scri, 
-						 RedirectAttributes rttr,
-						 @RequestParam(value="fileNoDel[]") String[] files,
-						 @RequestParam(value="fileNameDel[]") String[] fileNames,
-						 MultipartHttpServletRequest mpRequest) throws Exception {
+	public String update(BoardVO boardVO) throws Exception {
 		logger.info("update");
-		service.update(boardVO, files, fileNames, mpRequest);
-
-		rttr.addAttribute("page", scri.getPage());
-		rttr.addAttribute("perPageNum", scri.getPerPageNum());
-		rttr.addAttribute("searchType", scri.getSearchType());
-		rttr.addAttribute("keyword", scri.getKeyword());
+		service.update(boardVO);
 
 		return "redirect:/board/list";
 	}
@@ -207,23 +196,5 @@ public class BoardController {
 			rttr.addAttribute("keyword", scri.getKeyword());
 			
 			return "redirect:/board/readView";
-		}
-		
-		// 첨부파일 다운로드
-		@RequestMapping(value="/fileDown")
-		public void fileDown(@RequestParam Map<String, Object> map, HttpServletResponse response) throws Exception{
-			Map<String, Object> resultMap = service.selectFileInfo(map);
-			String storedFileName = (String) resultMap.get("STORED_FILE_NAME");
-			String originalFileName = (String) resultMap.get("ORG_FILE_NAME");
-			
-			// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[]형식으로 변환한다.
-			byte fileByte[] = org.apache.commons.io.FileUtils.readFileToByteArray(new File("C:\\camping\\file\\"+storedFileName));
-			
-			response.setContentType("application/octet-stream");
-			response.setContentLength(fileByte.length);
-			response.setHeader("Content-Disposition",  "attachment; fileName=\""+URLEncoder.encode(originalFileName, "UTF-8")+"\";");
-			response.getOutputStream().write(fileByte);
-			response.getOutputStream().flush();
-			response.getOutputStream().close();
 		}
 }

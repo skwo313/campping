@@ -1,17 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
-<!-- Bootstrap CSS -->
-
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-	crossorigin="anonymous">
-
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 <title>게시판</title>
 </head>
 <script type="text/javascript">
@@ -58,19 +49,6 @@
 		});
 	}
 </script>
-
-<style>
-body {
-	padding-top: 70px;
-	padding-bottom: 30px;
-}
-
-table {
-	width: 60%;
-	margin-left: auto;
-	margin-right: auto;
-}
-</style>
 <body>
 	<div id="root">
 		<header>
@@ -85,8 +63,7 @@ table {
 			</table>
 		</header>
 		<section id="container">
-			<form name="form" id="form" method="post" action="write"
-				enctype="multipart/form-data">
+			<form name="writeForm" id="form" method="post" action="write">
 				<table>
 					<tbody>
 						<tr>
