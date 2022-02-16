@@ -46,17 +46,19 @@
 	<div id="map"></div>
 	<div class="list">
 		<div class="form-box">
-			<select class="form-select">
-				<option>전체</option>
-				<option>경기도</option>
-				<option>충청남도</option>
-				<option>충청북도</option>
-				<option>강원도</option>
-				<option>전라남도</option>
-				<option>전라북도</option>
-				<option>경상남도</option>
-				<option>경상북도</option>
+			<form method="post" action="/camping/search">
+			<select class="form-select" name="select" onchange="this.form.submit()">
+				<option value="">도 선택</option>
+				<option value="경기도">경기도</option>
+				<option value="충청남도">충청남도</option>
+				<option value="충청북도">충청북도</option>
+				<option value="강원도">강원도</option>
+				<option value="전라남도">전라남도</option>
+				<option value="전라북도">전라북도</option>
+				<option value="경상남도">경상남도</option>
+				<option value="경상북도">경상북도</option>
 			</select>
+			</form>
 		</div>
 		<c:forEach items="${list}" var="list" varStatus="vs">
 			<div class="camping-place" id="detail${vs.index}">
@@ -129,7 +131,6 @@
 		</div>
 	</c:forEach>
 </div>
-
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=06bd11d6b565f348aeb6f7ee8032c658"></script>
 <script type="text/javascript">
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
