@@ -96,10 +96,6 @@ table {
 
 <body>
 	<div class="container">
-		<header>
-			<h1>게시판</h1>
-		</header>
-
 		<section id="container">
 			<form name="readForm" role="form" method="post">
 				<input type="hidden" id="bno" name="bno" value="${read.bno}" /> <input

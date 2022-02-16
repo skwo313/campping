@@ -50,7 +50,6 @@
 	}
 </script>
 <style>
-
 table {
 	width: 60%;
 	margin-left: auto;
