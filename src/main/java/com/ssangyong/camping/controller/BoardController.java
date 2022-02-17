@@ -119,7 +119,7 @@ public class BoardController {
 			throws Exception {
 		logger.info("delete");
 
-		service.delete(boardVO.getBno(), boardVO.getPassword());
+		service.delete(boardVO);
 
 		rttr.addAttribute("page", scri.getPage());
 		rttr.addAttribute("perPageNum", scri.getPerPageNum());

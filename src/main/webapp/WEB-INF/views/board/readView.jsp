@@ -86,7 +86,7 @@
 							for (var i = 0; i < regForm; i++) {
 								if ($(".chk").eq(i).val() == ""
 										|| $(".chk").eq(i).val() == null) {
-									alert($(".chk").eq(i).attr("password"));
+									alert($(".chk").eq(i).attr("title"));
 									return true;
 								}
 							}
@@ -138,11 +138,12 @@ table {
 				<div class="form-group">
 					<label for="password" class="col-sm-2 control-label">비밀번호</label>
 					<div class="col-sm-10">
+						<input type="hidden" id="bno" name="bno" value="${read.bno}" /> 
 						<input type="text" id="password" name="password" class="form-control" placeholder="삭제시 비밀번호를 입력해주세요" />
 					</div>
 				</div>
 			</form><br>
-			
+
 			<div>
 				<button type="button" class="update_btn btn btn-warning">수정</button>
 				<button type="hidden" class="delete_btn btn btn-danger">삭제</button>

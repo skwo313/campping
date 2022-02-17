@@ -108,7 +108,7 @@
 				</div>
 				 -->
 				<div>
-				<button type="button" style="float: right;" onclick="location.href='writeView'">글쓰기</button><br><br>
+				<button type="button" class="btn btn-success" style="float: right;" onclick="location.href='writeView'">글쓰기</button><br><br>
 				</div>
 				<!-- 
 				<div>

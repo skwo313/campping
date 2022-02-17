@@ -78,7 +78,6 @@
 		DELETE 
 		  FROM CAMPING_BOARD_LIST
 		 WHERE BNO = #{bno}  
-		   AND PASSWORD = #{password} 
    </delete>
     
     <!-- 게시판 조회수 -->
