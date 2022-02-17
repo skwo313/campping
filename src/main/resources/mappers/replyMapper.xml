@@ -20,7 +20,7 @@
 		, WRITER
 	)
 	VALUES(    #{bno}
-		, BOARD_LIST_SEQ.NEXTVAL
+		, CAMPING_BOARD_LIST_SEQ.NEXTVAL
 		, #{content}
 		, #{writer}	)
 	</insert>

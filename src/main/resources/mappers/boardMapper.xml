@@ -10,7 +10,7 @@
 	   					       , CONTENT 
 	   					       , WRITER  
 	   					       , PASSWORD )
-	                  VALUES(    BOARD_LIST_SEQ.NEXTVAL 
+	                  VALUES(    CAMPING_BOARD_LIST_SEQ.NEXTVAL 
 	                 		   , #{title}
 	                 		   , #{content}
 	                 		   , #{writer} 
