@@ -93,12 +93,12 @@ table {
 						</td>
 					</tr>
 					<tr>
-							<td>
-								<button class="write_btn btn btn-success" type="submit">작성</button>
-								<button type="button" class="btn btn-primary" onclick="location.href='list'">목록</button><br>
-								<br><br>
-							</td>
-						</tr>
+						<td>
+							<button class="write_btn btn btn-success" type="submit">작성</button>
+							<button type="button" class="btn btn-primary" onclick="location.href='list'">목록</button><br>
+							<br><br>
+						</td>
+					</tr>
 					</tbody>
 				</table>
 			</form>

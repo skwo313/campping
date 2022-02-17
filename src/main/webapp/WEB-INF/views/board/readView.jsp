@@ -138,15 +138,14 @@ table {
 				<div class="form-group">
 					<label for="password" class="col-sm-2 control-label">비밀번호</label>
 					<div class="col-sm-10">
-						<input type="text" id="password" name="password"
-							class="form-control" placeholder="삭제시 비밀번호를 입력해주세요" />
+						<input type="text" id="password" name="password" class="form-control" placeholder="삭제시 비밀번호를 입력해주세요" />
 					</div>
 				</div>
 			</form><br>
 			
 			<div>
 				<button type="button" class="update_btn btn btn-warning">수정</button>
-				<button type="submit" class="delete_btn btn btn-danger">삭제</button>
+				<button type="hidden" class="delete_btn btn btn-danger">삭제</button>
 				<button type="button" class="list_btn btn btn-primary">목록</button>
 				<br>
 			</div>

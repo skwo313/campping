@@ -5,7 +5,7 @@
 
  <font size="3em">
 <ul>
-		<button type="button" style="float:right;"onclick="location.href='writeView'">글쓰기</button>
+		<button type="button" onclick="location.href='writeView'">글쓰기</button>
 </ul>
 </font>
 
