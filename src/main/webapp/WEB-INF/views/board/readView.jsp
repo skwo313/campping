@@ -23,22 +23,29 @@
 						// 삭제
 						$(".delete_btn").on("click", function() {
 
-							var deleteYN = confirm("삭제하시겠습니까?");
+							var deleteYN = confirm("삭제하시겠습니까?");		
+							
 							if (deleteYN == true) {
-
+								if (fn_valiChk()){
+									return false;
+								}
+								
 								formObj.attr("action", "delete");
 								formObj.attr("method", "post");
 								formObj.submit();
-
 							}
+
 						})
 
 						// 목록
-						$(".list_btn").on("click",function() 
-								{location.href = "list?page=${scri.page}"
-											+ "&perPageNum=${scri.perPageNum}"
-											+ "&searchType=${scri.searchType}&keyword=${scri.keyword}";
-						})
+						$(".list_btn")
+								.on(
+										"click",
+										function() {
+											location.href = "list?page=${scri.page}"
+													+ "&perPageNum=${scri.perPageNum}"
+													+ "&searchType=${scri.searchType}&keyword=${scri.keyword}";
+										})
 
 						$(".replyWriteBtn").on("click", function() {
 							var formObj = $("form[name='replyForm']");
@@ -73,13 +80,18 @@
 													+ "&rno="
 													+ $(this).attr("data-rno");
 										});
+
+						function fn_valiChk() {
+							var regForm = $("form[name='passwordForm'] .chk").length;
+							for (var i = 0; i < regForm; i++) {
+								if ($(".chk").eq(i).val() == ""
+										|| $(".chk").eq(i).val() == null) {
+									alert($(".chk").eq(i).attr("password"));
+									return true;
+								}
+							}
+						}
 					})
-	function fn_fileDown(fileNo) {
-		var formObj = $("form[name='readForm']");
-		$("#FILE_NO").attr("value", fileNo);
-		formObj.attr("action", "/board/fileDown");
-		formObj.submit();
-	}
 </script>
 <style>
 
@@ -94,13 +106,11 @@ table {
 	<div class="container">
 		<section id="container">
 			<form name="readForm" role="form" method="post">
-				<input type="hidden" id="bno" name="bno" value="${read.bno}" /> <input
-					type="hidden" id="page" name="page" value="${scri.page}"> <input
-					type="hidden" id="perPageNum" name="perPageNum"
-					value="${scri.perPageNum}"> <input type="hidden"
-					id="searchType" name="searchType" value="${scri.searchType}">
-				<input type="hidden" id="keyword" name="keyword"
-					value="${scri.keyword}"><br>
+				<input type="hidden" id="bno" name="bno" value="${read.bno}" /> 
+				<input type="hidden" id="page" name="page" value="${scri.page}"> 
+				<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
+				<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}">
+				<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"><br>
 			</form>
 
 			<div class="form-group">
@@ -123,11 +133,22 @@ table {
 				<fmt:formatDate value="${read.regdate}" pattern="yyyy-MM-dd" /><br>
 			</div>
 			<br>
+
+			<form name="passwordForm" id="form" method="post" action="delete">
+				<div class="form-group">
+					<label for="password" class="col-sm-2 control-label">비밀번호</label>
+					<div class="col-sm-10">
+						<input type="text" id="password" name="password"
+							class="form-control" placeholder="삭제시 비밀번호를 입력해주세요" />
+					</div>
+				</div>
+			</form><br>
 			
 			<div>
 				<button type="button" class="update_btn btn btn-warning">수정</button>
-				<button type="button" class="delete_btn btn btn-danger">삭제</button>
-				<button type="button" class="list_btn btn btn-primary">목록</button><br>
+				<button type="submit" class="delete_btn btn btn-danger">삭제</button>
+				<button type="button" class="list_btn btn btn-primary">목록</button>
+				<br>
 			</div>
 
 			<!-- 댓글 -->

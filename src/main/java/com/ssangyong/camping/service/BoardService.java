@@ -27,5 +27,5 @@ public interface BoardService {
 	public void update(BoardVO boardVO) throws Exception;
 
 	// 게시물 삭제
-	public void delete(int bno) throws Exception;
+	public void delete(int bno, int password) throws Exception;
 }

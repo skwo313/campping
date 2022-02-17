@@ -58,9 +58,10 @@ public class BoardDAOImpl implements BoardDAO {
 
 	// 게시물 삭제
 	@Override
-	public void delete(int bno) throws Exception {
+	public void delete(int bno, int password) throws Exception {
 
 		sqlSession.delete("boardMapper.delete", bno);
+		sqlSession.delete("boardMapper.delete", password);
 	}
 
 	// 게시판 조회수

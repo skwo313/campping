@@ -7,7 +7,6 @@
 	 	<title>게시판</title>
 	 <style>
 	 </style>
-	 	
 	</head>
 	<body>
 		<div class="container">
