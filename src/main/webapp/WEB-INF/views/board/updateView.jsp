@@ -88,13 +88,12 @@ table {
 						</tr>
 						<tr>
 							<td><label for="regdate">작성날짜</label> <fmt:formatDate
-									value="${update.regdate}" pattern="yyyy-MM-dd" /></td>
+									value="${update.regdate}" pattern="yyyy-MM-dd" /></td><br>
 						</tr>
 					<tr>
 					<td>
-					<button type="button" class="btn btn-primary update_btn">저장</button>
+					<button type="button" class="btn btn-success update_btn">저장</button>
 					<button type="button" class="btn btn-primary cancel_btn">취소</button>
-					<button type="button" class="btn btn-primary fileAdd_btn">파일추가</button>
 					<br><br>
 					</td>
 					</tr>

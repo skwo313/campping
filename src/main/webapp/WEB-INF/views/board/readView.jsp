@@ -34,15 +34,11 @@
 						})
 
 						// 목록
-						$(".list_btn")
-								.on(
-										"click",
-										function() {
-
-											location.href = "list?page=${scri.page}"
-													+ "&perPageNum=${scri.perPageNum}"
-													+ "&searchType=${scri.searchType}&keyword=${scri.keyword}";
-										})
+						$(".list_btn").on("click",function() 
+								{location.href = "list?page=${scri.page}"
+											+ "&perPageNum=${scri.perPageNum}"
+											+ "&searchType=${scri.searchType}&keyword=${scri.keyword}";
+						})
 
 						$(".replyWriteBtn").on("click", function() {
 							var formObj = $("form[name='replyForm']");
@@ -104,35 +100,34 @@ table {
 					value="${scri.perPageNum}"> <input type="hidden"
 					id="searchType" name="searchType" value="${scri.searchType}">
 				<input type="hidden" id="keyword" name="keyword"
-					value="${scri.keyword}"> <input type="hidden" id="FILE_NO"
-					name="FILE_NO" value="">
+					value="${scri.keyword}"><br>
 			</form>
 
 			<div class="form-group">
 				<label for="title" class="col-sm-2 control-label">제목</label> <input
 					type="text" id="title" name="title" class="form-control"
-					value="${read.title}" readonly="readonly" />
+					value="${read.title}" readonly="readonly" /><br>
 			</div>
 			<div class="form-group">
 				<label for="content" class="col-sm-2 control-label">내용</label>
 				<textarea id="content" name="content" class="form-control" rows="10"
-					readonly="readonly"><c:out value="${read.content}" /></textarea>
+					readonly="readonly"><c:out value="${read.content}" /></textarea><br>
 			</div>
 			<div class="form-group">
 				<label for="writer" class="col-sm-2 control-label">작성자</label> <input
 					type="text" id="writer" name="writer" class="form-control"
-					value="${read.writer}" readonly="readonly" />
+					value="${read.writer}" readonly="readonly" /><br>
 			</div>
 			<div class="form-group">
 				<label for="regdate" class="col-sm-2 control-label">작성날짜</label>
-				<fmt:formatDate value="${read.regdate}" pattern="yyyy-MM-dd" />
+				<fmt:formatDate value="${read.regdate}" pattern="yyyy-MM-dd" /><br>
 			</div>
 			<br>
 			
 			<div>
 				<button type="button" class="update_btn btn btn-warning">수정</button>
 				<button type="button" class="delete_btn btn btn-danger">삭제</button>
-				<button type="button" class="list_btn btn btn-primary">목록</button>
+				<button type="button" class="list_btn btn btn-primary">목록</button><br>
 			</div>
 
 			<!-- 댓글 -->

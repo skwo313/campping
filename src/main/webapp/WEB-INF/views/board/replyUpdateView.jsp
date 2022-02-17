@@ -45,7 +45,7 @@
 						<tr>
 							<td><label for="content">댓글 내용</label>
 							<input type="text" id="content" name="content" rows="10"value="${replyUpdate.content}" />
-								<button type="submit" class="btn btn-primary update_btn">저장</button>
+								<button type="submit" class="btn btn-success update_btn">저장</button>
 								<button type="button" class="btn btn-primary cancel_btn">취소</button>
 								</td>
 						</tr>

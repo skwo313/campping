@@ -16,7 +16,17 @@
 			formObj.attr("method", "post");
 			formObj.submit();
 		});
-		fn_addFile();
+		
+		$(".list_btn")
+		.on(
+				"click",
+				function() {
+
+					location.href = "list?page=${scri.page}"
+							+ "&perPageNum=${scri.perPageNum}"
+							+ "&searchType=${scri.searchType}&keyword=${scri.keyword}";
+				})
+
 	})
 	function fn_valiChk() {
 		var regForm = $("form[name='writeForm'] .chk").length;
@@ -47,6 +57,8 @@
 			$(this).parent().remove();
 
 		});
+		
+
 	}
 </script>
 <style>
@@ -101,14 +113,10 @@ table {
 
 							</td>
 						</tr>
-
-						<tr>
-							<td id="fileIndex"></td>
-						</tr>
 						<tr>
 							<td>
-								<button class="btn btn-primary write_btn" type="submit">작성</button>
-								<button class="btn btn-primary fileAdd_btn" type="button">파일추가</button>
+								<button class="btn btn-success write_btn" type="submit">작성</button>
+								<button type="button" class="btn btn-primary" onclick="location.href='list'">목록</button><br>
 								<br><br>
 							</td>
 						</tr>
