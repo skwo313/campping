@@ -49,7 +49,7 @@
 							formObj.submit();
 						});
 
-						//댓글 수정 View
+						// 댓글 수정 View
 						$(".replyUpdateBtn")
 								.on(
 										"click",
@@ -63,7 +63,7 @@
 													+ $(this).attr("data-rno");
 										});
 
-						//댓글 삭제 View
+						// 댓글 삭제 View
 						$(".replyDeleteBtn")
 								.on(
 										"click",
@@ -76,6 +76,13 @@
 													+ "&rno="
 													+ $(this).attr("data-rno");
 										});
+						// 첨부파일 다운
+						function fn_fileDown(fileNo){
+							var formObj = $("form[name='readForm']");
+							$("#FILE_NO").attr("value", fileNo);
+							formObj.attr("action", "/board/fileDown");
+							formObj.submit();
+						}
 
 						function fn_valiChk() {
 							var regForm = $("form[name='readForm'] .chk").length;
@@ -107,7 +114,8 @@ table {
 					value="${scri.perPageNum}"> <input type="hidden"
 					id="searchType" name="searchType" value="${scri.searchType}">
 				<input type="hidden" id="keyword" name="keyword"
-					value="${scri.keyword}"><br>
+					value="${scri.keyword}">
+					<input type="hidden" id="FILE_NO" name="FILE_NO" value=""><br>
 
 				<div class="form-group">
 					<label for="title" class="col-sm-2 control-label">제목</label> <input
