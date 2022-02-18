@@ -9,6 +9,15 @@ public class ReplyVO {
 	private String content;
 	private String writer;
 	private Date regdate;
+	private int password;
+
+	public int getPassword() {
+		return password;
+	}
+
+	public void setPassword(int password) {
+		this.password = password;
+	}
 
 	public int getBno() {
 		return bno;
