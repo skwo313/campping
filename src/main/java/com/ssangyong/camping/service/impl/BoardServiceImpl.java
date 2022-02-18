@@ -62,8 +62,9 @@ public class BoardServiceImpl implements BoardService {
 	// 게시물 수정
 	@Override
 	public void update(BoardVO boardVO) throws Exception {
-
+		
 		dao.update(boardVO);
+	
 	}
 
 	// 게시물 삭제
