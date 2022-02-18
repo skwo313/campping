@@ -102,6 +102,9 @@ public class BoardController {
 
 		model.addAttribute("update", service.read(boardVO.getBno()));
 		model.addAttribute("scri", scri);
+		
+		List<Map<String, Object>> fileList = service.selectFileList(boardVO.getBno());
+		model.addAttribute("file", fileList);
 
 		return "board/updateView.page";
 	}
