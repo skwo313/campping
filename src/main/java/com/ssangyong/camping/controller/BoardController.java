@@ -125,7 +125,8 @@ public class BoardController {
 		rttr.addAttribute("perPageNum", scri.getPerPageNum());
 		rttr.addAttribute("searchType", scri.getSearchType());
 		rttr.addAttribute("keyword", scri.getKeyword());
-
+		rttr.addAttribute("password", boardVO.getPassword());
+		
 		return "redirect:/board/list";
 	}
 

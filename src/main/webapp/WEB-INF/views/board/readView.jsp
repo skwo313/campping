@@ -22,19 +22,15 @@
 
 						// 삭제
 						$(".delete_btn").on("click", function() {
+							var deleteYN = confirm("삭제하시겠습니까?");
 
-							var deleteYN = confirm("삭제하시겠습니까?");		
-							
 							if (deleteYN == true) {
-								if (fn_valiChk()){
-									return false;
-								}
-								
+
 								formObj.attr("action", "delete");
 								formObj.attr("method", "post");
 								formObj.submit();
-							}
 
+							}
 						})
 
 						// 목록
@@ -82,7 +78,7 @@
 										});
 
 						function fn_valiChk() {
-							var regForm = $("form[name='passwordForm'] .chk").length;
+							var regForm = $("form[name='readForm'] .chk").length;
 							for (var i = 0; i < regForm; i++) {
 								if ($(".chk").eq(i).val() == ""
 										|| $(".chk").eq(i).val() == null) {
@@ -94,7 +90,6 @@
 					})
 </script>
 <style>
-
 table {
 	width: 60%;
 	margin-left: auto;
@@ -106,47 +101,47 @@ table {
 	<div class="container">
 		<section id="container">
 			<form name="readForm" role="form" method="post">
-				<input type="hidden" id="bno" name="bno" value="${read.bno}" /> 
-				<input type="hidden" id="page" name="page" value="${scri.page}"> 
-				<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
-				<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}">
-				<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"><br>
-			</form>
+				<input type="hidden" id="bno" name="bno" value="${read.bno}" /> <input
+					type="hidden" id="page" name="page" value="${scri.page}"> <input
+					type="hidden" id="perPageNum" name="perPageNum"
+					value="${scri.perPageNum}"> <input type="hidden"
+					id="searchType" name="searchType" value="${scri.searchType}">
+				<input type="hidden" id="keyword" name="keyword"
+					value="${scri.keyword}"><br>
 
-			<div class="form-group">
-				<label for="title" class="col-sm-2 control-label">제목</label> <input
-					type="text" id="title" name="title" class="form-control"
-					value="${read.title}" readonly="readonly" /><br>
-			</div>
-			<div class="form-group">
-				<label for="content" class="col-sm-2 control-label">내용</label>
-				<textarea id="content" name="content" class="form-control" rows="10"
-					readonly="readonly"><c:out value="${read.content}" /></textarea><br>
-			</div>
-			<div class="form-group">
-				<label for="writer" class="col-sm-2 control-label">작성자</label> <input
-					type="text" id="writer" name="writer" class="form-control"
-					value="${read.writer}" readonly="readonly" /><br>
-			</div>
-			<div class="form-group">
-				<label for="regdate" class="col-sm-2 control-label">작성날짜</label>
-				<fmt:formatDate value="${read.regdate}" pattern="yyyy-MM-dd" /><br>
-			</div>
-			<br>
-
-			<form name="passwordForm" id="form" method="post" action="delete">
 				<div class="form-group">
-					<label for="password" class="col-sm-2 control-label">비밀번호</label>
+					<label for="title" class="col-sm-2 control-label">제목</label> <input
+						type="text" id="title" name="title" class="form-control"
+						value="${read.title}" readonly="readonly" /><br>
+				</div>
+				<div class="form-group">
+					<label for="content" class="col-sm-2 control-label">내용</label>
+					<textarea id="content" name="content" class="form-control"
+						rows="10" readonly="readonly"><c:out
+							value="${read.content}" /></textarea>
+					<br>
+				</div>
+				<div class="form-group">
+					<label for="writer" class="col-sm-2 control-label">작성자</label> <input
+						type="text" id="writer" name="writer" class="form-control"
+						value="${read.writer}" readonly="readonly" /><br>
+				</div>
+				<div class="form-group">
+					<label for="regdate" class="col-sm-2 control-label">작성날짜</label>
+					<fmt:formatDate value="${read.regdate}" pattern="yyyy-MM-dd" />
+					<br>
+					<br>
+				</div>
+				<div class="form-group">
 					<div class="col-sm-10">
-						<input type="hidden" id="bno" name="bno" value="${read.bno}" /> 
-						<input type="text" id="password" name="password" class="form-control" placeholder="삭제시 비밀번호를 입력해주세요" />
+						<label for="password" class="col-sm-2 control-label">비밀번호</label>
+						<input type="password" id="password" name="password" value="${password}" class="form-control" placeholder="삭제시 비밀번호를 입력해주세요" /><br>
 					</div>
 				</div>
-			</form><br>
-
+			</form>
 			<div>
 				<button type="button" class="update_btn btn btn-warning">수정</button>
-				<button type="hidden" class="delete_btn btn btn-danger">삭제</button>
+				<button type="submit" class="delete_btn btn btn-danger">삭제</button>
 				<button type="button" class="list_btn btn btn-primary">목록</button>
 				<br>
 			</div>
@@ -197,6 +192,15 @@ table {
 							class="form-control" />
 					</div>
 				</div>
+				
+				<div class="form-group">
+					<label for="content" class="col-sm-2 control-label">댓글 비밀번호</label>
+					<div class="col-sm-10">
+						<input type="text" id="password" name="password"
+							class="form-control" />
+					</div>
+				</div>
+				
 				<br>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
@@ -206,7 +210,7 @@ table {
 				<br>
 			</form>
 		</section>
-	
+
 	</div>
 </body>
 </html>
