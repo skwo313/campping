@@ -12,7 +12,7 @@ import com.ssangyong.camping.vo.SearchCriteria;
 public interface BoardService {
 
 	// 게시글 작성
-	public void write(BoardVO boardVO) throws Exception;
+	public void write(BoardVO boardVO, MultipartHttpServletRequest mpRequest) throws Exception;
 
 	// 게시물 목록 조회
 	public List<BoardVO> list(SearchCriteria scri) throws Exception;
@@ -28,4 +28,7 @@ public interface BoardService {
 
 	// 게시물 삭제
 	public void delete(BoardVO boardVO) throws Exception;
+	
+	// 첨부파일 조회
+	public List<Map<String, Object>> selectFileList(int bno) throws Exception;
 }

@@ -51,12 +51,12 @@ public class BoardController {
 
 	// 게시판 글 작성
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String write(BoardVO boardVO) throws Exception {
+	public String write(BoardVO boardVO, MultipartHttpServletRequest mpRequest) throws Exception {
 		logger.info("write" + boardVO.getTitle());
 		logger.info("write" + boardVO.getContent());
 		logger.info("write" + boardVO.getWriter());
 		logger.info("wirte" + boardVO.getPassword());
-		service.write(boardVO);
+		service.write(boardVO, mpRequest);
 
 		return "redirect:/board/list";
 	}
@@ -89,6 +89,8 @@ public class BoardController {
 		List<ReplyVO> replyList = replyService.readReply(boardVO.getBno());
 		model.addAttribute("replyList", replyList);
 
+		List<Map<String, Object>> fileList = service.selectFileList(boardVO.getBno());
+		model.addAttribute("file", fileList);
 		return "board/readView.page";
 	}
 

@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
@@ -28,16 +29,32 @@
 							+ "&searchType=${scri.searchType}&keyword=${scri.keyword}";
 				})
 
-	})
-	function fn_valiChk() {
-		var regForm = $("form[name='writeForm'] .chk").length;
-		for (var i = 0; i < regForm; i++) {
-			if ($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null) {
-				alert($(".chk").eq(i).attr("title"));
-				return true;
+		})
+		function fn_valiChk() {
+			var regForm = $("form[name='writeForm'] .chk").length;
+			for (var i = 0; i < regForm; i++) {
+				if ($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null) {
+					alert($(".chk").eq(i).attr("title"));
+					return true;
+				}
 			}
 		}
-	}
+			// 첨부파일 업로드
+			<%-- 
+			#goMain #regBtn .custom-file-input
+			--%>
+			$("#goMain").click(function(){
+				location.href="${path}/board.do?method=list";
+			});
+			$("#write_btn").click(function(){
+				// 등록 처리 유효성  check
+				if(confirm("등록하시겠습니까?")){
+					$("form").submit();
+				}
+			});
+			$(".custom-file-input").on("change",function(){
+				$(this).next(".custom-file-label").text($(this).val());
+			});
 	}
 </script>
 <style>
@@ -48,41 +65,42 @@ table {
 }
 </style>
 <body>
-	<br><br>
+	<br>
+	<br>
 	<section id="container">
-			<form name="writeForm" id="form" method="post" action="write">
-				<table>
-					<tbody>
-						<tr>
-							<td>
-								<div class="mb-3">
-									<label for="title">제목</label> <input type="text"
-										class="form-control" name="title" id="title"
-										placeholder="제목을 입력해 주세요">
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
+		<form name="writeForm" id="form" method="post" action="write" enctype="multipart/form-data">
+			<table>
+				<tbody>
+					<tr>
+						<td>
+							<div class="mb-3">
+								<label for="title">제목</label> <input type="text"
+									class="form-control" name="title" id="title"
+									placeholder="제목을 입력해 주세요">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
 
-								<div class="mb-3">
-									<label for="content">내용</label>
-									<textarea class="form-control" rows="10" name="content"
-										id="content" placeholder="내용을 입력해 주세요"></textarea>
+							<div class="mb-3">
+								<label for="content">내용</label>
+								<textarea class="form-control" rows="10" name="content"
+									id="content" placeholder="내용을 입력해 주세요"></textarea>
 
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
 
-								<div class="mb-3">
-									<label for="reg_id">작성자</label> <input type="text"
-										class="form-control" name="writer" id="writer"
-										placeholder="이름을 입력해 주세요">
-								</div>
-							</td>
-						</tr>
+							<div class="mb-3">
+								<label for="reg_id">작성자</label> <input type="text"
+									class="form-control" name="writer" id="writer"
+									placeholder="이름을 입력해 주세요">
+							</div>
+						</td>
+					</tr>
 					<tr>
 						<td>
 							<div class="mb-3">
@@ -94,16 +112,23 @@ table {
 					</tr>
 					<tr>
 						<td>
-							<button class="write_btn btn btn-success" type="submit">작성</button>
-							<button type="button" class="btn btn-primary" onclick="location.href='list'">목록</button><br>
-							<br><br>
+							<div class="custom-file">
+								<input type="file" name="file"/>
+							</div><br>
 						</td>
 					</tr>
-					</tbody>
-				</table>
-			</form>
+					<tr>
+						<td>
+							<button class="write_btn btn btn-success" type="submit">작성</button>
+							<button type="button" class="btn btn-primary"
+								onclick="location.href='list'">목록</button> <br> <br> <br>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
 
-		</section>
+	</section>
 	</div>
 </body>
 </html>
