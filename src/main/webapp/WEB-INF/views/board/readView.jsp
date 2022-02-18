@@ -135,7 +135,7 @@ table {
 				<div class="form-group">
 					<div class="col-sm-10">
 						<label for="password" class="col-sm-2 control-label">비밀번호</label>
-						<input type="password" id="password" name="password" value="${password}" class="form-control" placeholder="삭제시 비밀번호를 입력해주세요" /><br>
+						<input type="password" id="password" name="password" value="${password}" class="form-control" placeholder="수정 또는 삭제시 비밀번호를 입력해주세요" /><br>
 					</div>
 				</div>
 			</form>
