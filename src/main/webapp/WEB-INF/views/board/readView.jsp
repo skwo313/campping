@@ -140,11 +140,15 @@ table {
 					<br><br>
 				</div>
 				
-				<span>파일 목록</span>
-				<div class="form-group" style="border: 1px solid #dbdbdb;">
-					<c:forEach var="file" items="${file}">
+				<div class="form-group">
+					<div class="col-sm-10">
+					<span>파일 목록</span>
+						<div class="form-group" style="border: 1px solid #dbdbdb;" class="col-sm-2 control-label">
+						<c:forEach var="file" items="${file}">
 						<a href="#" onclick="fn_fileDown('${file.FILE_NO}'); return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)<br>
-					</c:forEach>
+						</c:forEach><br>
+					</div>
+					</div>
 				</div>
 				
 				<div class="form-group">
@@ -207,7 +211,7 @@ table {
 							class="form-control" />
 					</div>
 				</div>
-				
+				<!--  
 				<div class="form-group">
 					<label for="content" class="col-sm-2 control-label">댓글 비밀번호</label>
 					<div class="col-sm-10">
@@ -215,6 +219,7 @@ table {
 							class="form-control" />
 					</div>
 				</div>
+				-->
 				
 				<br>
 				<div class="form-group">
