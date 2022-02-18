@@ -91,16 +91,14 @@ table {
 	<br>
 	<div id="root">
 		<section id="container">
-			<form name="updateForm" role="form" method="post" action="update">
-				<input type="hidden" name="bno" value="${update.bno}"
-					readonly="readonly" /> <input type="hidden" id="page" name="page"
-					value="${scri.page}"> <input type="hidden" id="perPageNum"
-					name="perPageNum" value="${scri.perPageNum}"> <input
-					type="hidden" id="searchType" name="searchType"
-					value="${scri.searchType}"> <input type="hidden"
-					id="keyword" name="keyword" value="${scri.keyword}"> <input
-					type="hidden" id="fileNoDel" name="fileNoDel[]" value=""> <input
-					type="hidden" id="fileNameDel" name="fileNameDel[]" value="">
+			<form name="updateForm" role="form" method="post" action="update" enctype="multipart/form-data">
+				<input type="hidden" name="bno" value="${update.bno}" readonly="readonly" /> 
+				<input type="hidden" id="page" name="page" value="${scri.page}"> 
+				<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
+				<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
+				<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
+				<input type="hidden" id="fileNoDel" name="fileNoDel[]" value=""> 
+				<input type="hidden" id="fileNameDel" name="fileNameDel[]" value=""> 
 				<table>
 					<tbody>
 						<tr>

@@ -24,7 +24,7 @@ public interface BoardService {
 	public BoardVO read(int bno) throws Exception;
 
 	// 게시물 수정
-	public void update(BoardVO board) throws Exception;                    
+	public void update(BoardVO boardVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception;                
 
 	// 게시물 삭제
 	public void delete(BoardVO boardVO) throws Exception;
@@ -34,7 +34,5 @@ public interface BoardService {
 	
 	// 첨부파일 다운
 	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception;
-    
-	// 첨부파일 수정
-	public void update(BoardVO boardVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception;
+	
 }

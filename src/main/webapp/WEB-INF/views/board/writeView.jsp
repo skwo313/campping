@@ -18,6 +18,8 @@
 			formObj.attr("method", "post");
 			formObj.submit();
 		});
+		fn_addFile();
+		}
 		
 		$(".list_btn")
 		.on(
@@ -39,21 +41,15 @@
 				}
 			}
 		}
-			// 첨부파일 업로드
-			<%-- 
-			#goMain #regBtn .custom-file-input
-			--%>
-			$("#goMain").click(function(){
-				location.href="${path}/board.do?method=list";
+		function fn_addFile(){
+			var fileIndex = 1;
+			//$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"<button type='button' style='float:right;' id='fileAddBtn'>"+"추가"+"</button></div>");
+			$(".fileAdd_btn").on("click", function(){
+				$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"</button>"+"<button type='button' style='float:right;' id='fileDelBtn'>"+"삭제"+"</button></div>");
 			});
-			$("#write_btn").click(function(){
-				// 등록 처리 유효성  check
-				if(confirm("등록하시겠습니까?")){
-					$("form").submit();
-				}
-			});
-			$(".custom-file-input").on("change",function(){
-				$(this).next(".custom-file-label").text($(this).val());
+			$(document).on("click","#fileDelBtn", function(){
+				$(this).parent().remove();
+				
 			});
 	}
 </script>
@@ -120,8 +116,8 @@ table {
 					<tr>
 						<td>
 							<button class="write_btn btn btn-success" type="submit">작성</button>
-							<button type="button" class="btn btn-primary"
-								onclick="location.href='list'">목록</button> <br> <br> <br>
+							<button class="fileAdd_btn btn btn-primary" type="button">파일추가</button>	
+							<button type="button" class="btn btn-primary" onclick="location.href='list'">목록</button> <br> <br> <br>
 						</td>
 					</tr>
 				</tbody>
