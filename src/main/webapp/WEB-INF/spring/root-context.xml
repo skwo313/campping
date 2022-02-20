@@ -12,13 +12,13 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource">
 			<property value="oracle.jdbc.driver.OracleDriver" name="driverClassName" />
-			<property value="jdbc:oracle:thin:@localhost:1521:xe" name="url" />
+			<property value="jdbc:oracle:thin:@106.10.71.20:1521:xe" name="url" />
 			<!-- 오라클 사용자 이름 -->
 			<property value="scott" name="username" />
 			<!-- 오라클 사용자 비밀번호 -->
 			<property value="tiger" name="password" />
 		</bean>
-	
+	 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	         <property name="dataSource" ref="dataSource"></property>
 	         <property name="configLocation" value="classpath:/mybatis-config.xml"></property>
@@ -28,7 +28,7 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
 	        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
-	
+		
 	<context:component-scan base-package="com.ssangyong.camping">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
