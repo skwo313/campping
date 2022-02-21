@@ -18,13 +18,11 @@
 		, RNO
 		, CONTENT
 		, WRITER
-		, PASSWORD
 	)
 	VALUES(    #{bno}
 		, CAMPING_BOARD_LIST_SEQ.NEXTVAL
 		, #{content}
-		, #{writer}	
-		, #{password} )
+		, #{writer})
 	</insert>
 	
 	<!-- 댓글 수정 -->
