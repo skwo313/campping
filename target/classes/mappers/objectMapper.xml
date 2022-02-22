@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+<mapper namespace="objectMapper">
+	<select id="objectList" resultType="com.ssangyong.camping.vo.ObjectVO" parameterType="hashmap">
+		SELECT *
+		FROM (
+			SELECT ROWNUM RN, A.*
+			FROM (
+				SELECT *
+				FROM camping_object
+				WHERE UPPER(CAMPING_NAME) LIKE '%'||UPPER(#{CAMPING_NAME})||'%'
+			) A
+		)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	<select id="objectListNew" resultType="com.ssangyong.camping.vo.ObjectVO" parameterType="hashmap">
+		SELECT *
+		FROM (
+			SELECT ROWNUM RN, A.*
+			FROM (
+				SELECT *
+				FROM camping_object
+				WHERE UPPER(CAMPING_NAME) LIKE '%'||UPPER(#{CAMPING_NAME})||'%'
+				ORDER BY CAMPING_REG_DATE DESC
+			) A
+		)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	<select id="objectListMax" resultType="com.ssangyong.camping.vo.ObjectVO" parameterType="hashmap">
+		SELECT *
+		FROM (
+			SELECT ROWNUM RN, A.*
+			FROM (
+				SELECT *
+				FROM camping_object
+				WHERE UPPER(CAMPING_NAME) LIKE '%'||UPPER(#{CAMPING_NAME})||'%'
+				ORDER BY CAMPING_PRICE DESC
+			) A
+		)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	<select id="objectListMin" resultType="com.ssangyong.camping.vo.ObjectVO" parameterType="hashmap">
+		SELECT *
+		FROM (
+			SELECT ROWNUM RN, A.*
+			FROM (
+				SELECT *
+				FROM camping_object
+				WHERE UPPER(CAMPING_NAME) LIKE '%'||UPPER(#{CAMPING_NAME})||'%'
+				ORDER BY CAMPING_PRICE ASC
+			) A
+		)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	<select id="searchCnt" resultType="int" parameterType="String">
+		SELECT count(*)
+		FROM CAMPING_OBJECT
+		WHERE UPPER(CAMPING_NAME) LIKE '%'||UPPER(#{CAMPING_NAME})||'%'
+	</select>
+	<select id="objectDetail" resultType="com.ssangyong.camping.vo.ObjectVO" parameterType="String">
+		SELECT *
+		FROM CAMPING_OBJECT
+		WHERE CAMPING_NAME = #{CAMPING_NAME}
+	</select>
+	<insert id="objectCartIns" parameterType="com.ssangyong.camping.vo.ObjectCartVO">
+		INSERT INTO CAMPING_OBJECT_CART 
+		VALUES (seq_camping_object_cart.nextval, #{user_id}, #{camping_object_name}, #{camping_object_image}, #{camping_object_price}, #{camping_object_tot_price})
+	</insert>
+	<select id="objectCartCk" resultType="int" parameterType="hashmap">
+		SELECT count(*)
+		FROM camping_object_cart
+		WHERE user_id = #{user_id} 
+		AND camping_object_name = #{camping_object_name}
+	</select>
+	<select id="objectCartCnt" resultType="int" parameterType="String">
+		SELECT count(*)
+		FROM camping_object_cart
+		WHERE user_id = #{user_id}
+	</select>
+</mapper>

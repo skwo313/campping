@@ -1,0 +1,266 @@
+#content {
+	display: flex;
+	justify-content: center;
+}
+.logoimg {
+	display: flex;
+	justify-content: center;
+	margin-top: 30px;
+}
+.logoimg > img {
+	width: 100px;
+	height: 150px;
+}
+.categorybox {
+	display: flex;
+	justify-content: center;
+	margin-top: 30px;
+	border-top: 1px solid #dcdcdc;
+	border-bottom: 1px solid #dcdcdc;
+}
+.category {
+	display: flex;
+	list-style:none;
+	margin: 0;
+	padding: 0;
+}
+.category > li {
+	padding: 20px 25px
+}
+.category > li > a {
+	float: left;
+	text-decoration: none;
+	color: black;
+	font-size: 13px;
+}
+.category li > a:hover {
+    font-weight: bold;
+}
+.path {
+	display: flex; 
+	flex-direction: column; 
+	padding-left: 30px; 
+	width: 1200px;
+}
+.link {
+	display: flex;
+	margin-top: 40px;
+	margin-bottom: 10px;
+}
+.link > i {
+	display: flex; 
+	align-items: center;
+}
+.link > a {
+	text-decoration: none;
+	color: black;
+	font-size: 13px;
+	align-items: center;
+	display: flex;
+	margin-top: 1px;
+}
+.link > a:hover {
+	font-weight: bold;
+}
+.objinfo {
+	display: flex; 
+	justify-content: center;
+}
+.objinfo > div {
+	display: flex; 
+	justify-content: center;
+	border-bottom: 3px solid #A9A9A9; 
+	padding-bottom: 30px; 
+	margin-bottom: 30px;
+	width: 100%;
+}
+.img {
+	display: flex; 
+}
+.img > img {
+	width: 450px; 
+	height: 430px; 
+	border: 1px solid #dcdcdc; 
+	padding: 10px;
+}
+.info {
+	display: flex; 
+	margin-left: 100px; 
+	flex-direction: column; 
+	justify-content: center;
+}
+.info > div {
+	border-bottom: 1px solid #dcdcdc; 
+	border-top: 1px solid #dcdcdc; 
+	padding-top: 30px; 
+	padding-bottom: 30px;
+	width: 400px;
+}
+.infotb {
+	margin-left: 20px;
+}
+.infotb > tbody > tr > td {
+	padding-top: 30px;
+}
+.infotb > tbody > tr > td > span {
+	font-weight: bold; 
+	color: red;
+}
+.infotb > tbody > tr > th {
+	font-size: 20px;
+}
+.count {
+	display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+	width: 50%;
+}
+i {
+	cursor: pointer;
+}
+.count > i {
+	display: flex; 
+	align-items: center;
+}
+#cnt {
+	text-align:center; 
+	margin-left: 10px;
+	margin-right: 10px;
+}
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.infobtn {
+	text-align: center; 
+	margin-top: 20px;
+}
+.infobtn > tbody > tr > td > button {
+	width: 150px; 
+	height: 50px;
+}
+.detailimg {
+	display: flex; 
+	justify-content: center;
+}
+.detailimg > img {
+	margin-bottom: 5%;
+	width: 95%;
+}
+.scroll {
+	display: flex; 
+}
+.scroll > div {
+    display: flex;
+	position: fixed;
+	flex-direction: column;
+	top: 50%;
+	margin-left: 200px;
+}
+.button {
+	border-radius: 100px;
+	width: 50px;
+	height: 50px;
+	border: 1px solid #696969;
+	background-color: rgba(0,0,0,0);
+	color: #696969;
+	margin-bottom: 20px;
+	font-size: 20px;
+}
+.button:hover {
+	background-color: #696969;
+	color: white;
+}
+.fixedbox {
+	display:flex; 
+}
+.fixedbox > div {
+    display: flex;
+    justify-content: center;
+	position: fixed;
+	flex-direction: column;
+	top: 30%;
+	margin-left: 80px;
+	width: 100px;
+}
+.fixedcart {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #222222;
+    height: 35px;
+}
+.fixedcart > div {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+}
+.fixedlist {
+    display: flex;
+    justify-content: center;
+	cursor: pointer;
+	text-align: center;
+	border: 1px solid #dcdcdc;
+	margin: 0px 8px 8px 8px;
+}
+.cartcnt {
+	display: flex;
+	flex-direction: column;
+    justify-content: center;
+	background: white;
+	padding: 3px;
+	border-radius: 100px;
+	width: 18px;
+	height: 18px;
+	text-align: center;
+	margin-left: 5px;
+}
+.cartcnt > span {
+	font-size: 10px;
+	color: black;
+}
+.fixedcon {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #A9A9A9;
+	border-top: none;
+	padding-top: 8px;
+}
+.nofixed {
+	display: flex;
+	flex-direction: column;
+    justify-content: center;
+    margin: 10px;
+    margin-bottom: 20px;
+    font-size: 10px;
+	text-align: center;
+	color: #696969;
+	font-weight: bold;
+}
+.nofixed > i {
+	font-size: 60px; 
+	text-align:center; 
+	color: #696969
+}
+.fixedtext {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 5px;
+	font-size: 12px;
+}
+.fixedlist > img {
+	width: 75px; 
+	height: 75px; 
+	padding: 3px;
+}
+#exampleModalLongTitle {
+	padding:20px; 
+	text-align: center;
+}
+#modal-footer {
+	justify-content: center;
+}

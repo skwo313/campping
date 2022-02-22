@@ -31,7 +31,7 @@
 				}
 				%>
 				<li class="nav-item"><a class="nav-link display4"
-					aria-current="page" href="#">캠핑용품</a></li>
+					aria-current="page" href="/camping/object">캠핑용품</a></li>
 				<li class="nav-item"><a class="nav-link" aria-current="page"
 					href="#">커뮤니티</a></li>
 				<li class="nav-item dropdown"><a
