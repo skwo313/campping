@@ -4,15 +4,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mainMapper">
 	<!-- 캠핑장 전체 목록 -->
-	<select id="list" resultType="com.ssangyong.camping.vo.CampingInfoVO" parameterType="hashmap">
+	<select id="list"
+		resultType="com.ssangyong.camping.vo.CampingInfoVO"
+		parameterType="hashmap">
 		<![CDATA[
 		SELECT * FROM CAMPING_INFORMATION ci
 		WHERE (CAMPING_NAME LIKE '%'||#{keyword}||'%' OR CAMPING_LOC LIKE '%'||#{keyword}||'%') AND CAMPING_DO LIKE '%'||#{select}||'%'
 		]]>
 	</select>
-	<!-- 캠핑장 검색 -->
-<!-- 	<select id="searchList" resultType="com.ssangyong.camping.vo.CampingInfoVO" parameterType="String">
-		SELECT * FROM CAMPING_INFORMATION ci
-		WHERE CAMPING_NAME LIKE '%'||#{keyword}||'%' OR CAMPING_LOC LIKE '%'||#{keyword}||'%'
-	</select> -->
+	<!-- 캠핑장 예약 -->
+	<insert id="order"
+		parameterType="com.ssangyong.camping.vo.CampingOrderVO">
+		<![CDATA[
+		INSERT INTO camping_order
+		VALUES(seq_camping_order.NEXTVAL, #{user_id},#{camping_order_name},#{camping_order_image},#{camping_order_resultprice},#{camping_order_startdate},#{camping_order_enddate})
+		]]>
+	</insert>
 </mapper>

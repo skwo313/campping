@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ssangyong.camping.service.MainService;
+import com.ssangyong.camping.vo.CampingOrderVO;
 
 /**
  * Handles requests for the application home page.
@@ -38,6 +39,7 @@ public class HomeController {
 		model.addAttribute("list",service.list(hashMap));
 		return "home.page";
 	}
+	/* 검색창 검색 */
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public String Search(@RequestParam(value="keyword", required=false, defaultValue="") String keyword,
 						@RequestParam(value="select", required=false, defaultValue="") String select,
@@ -50,32 +52,17 @@ public class HomeController {
 		model.addAttribute("list",service.list(hashMap));
 		return "home.page";
 	}
-	/* 검색창 검색 */
-//	@RequestMapping(value = "/search", method = RequestMethod.POST)
-//	public String search(@RequestParam("keyword") String keyword,
-//						 Model model
-//			            ) {
-//		if (keyword == null)
-//			keyword="";
-//
-//		logger.info("Search");
-//		try {
-//			model.addAttribute("searchList",service.searchList(keyword));
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return "home.page";
-//	}
-	
-	/* select 검색 */
-
-	
-	
-	
-	
-	
-	
+	/* 캠핑장 예약 */
+	@RequestMapping(value = "/order", method = RequestMethod.POST)
+	public String Order(CampingOrderVO orderVO, Model d) throws Exception{
+		logger.info("Order");
+		/*
+		 * HttpSession session = req.getSession(); MemberVO vo =
+		 * (MemberVO)session.getAttribute("member"); System.out.println(vo.getUserId());
+		 */
+		service.order(orderVO);
+		return "redirect:/";
+	}
 	
 /*--------------------------------------------------------------*/
 	/**

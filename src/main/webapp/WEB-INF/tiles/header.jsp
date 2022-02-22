@@ -43,7 +43,6 @@
 						<ul class="dropdown-menu dropdown-menu-end"
 							aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="#" id="logout">로그아웃</a></li>
-						</ul>
 						<%
 						} else {
 						%>
@@ -56,8 +55,7 @@
 							}
 							%>
 							<li><hr class="dropdown-divider" /></li>
-							<li><a class="dropdown-item" href="#">Something else
-									here</a></li>
+							<li><a class="dropdown-item" href="#">마이페이지</a></li>
 						</ul>
 				</li>
 			</ul>
