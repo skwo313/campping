@@ -12,7 +12,7 @@
 			.ready(
 					function() {
 						var formObj = $("form[name='readForm']");
-
+						
 						// 수정 
 						$(".update_btn").on("click", function() {
 							formObj.attr("action", "updateView");
@@ -44,6 +44,15 @@
 										})
 
 						$(".replyWriteBtn").on("click", function() {
+							var writer = $("#writer").val();
+							
+							if (writer == ""){
+								alert("작성자를 입력하세요");
+								$("#writer").focus();
+								
+								return false;
+							}		
+							
 							var formObj = $("form[name='replyForm']");
 							formObj.attr("action", "replyWrite");
 							formObj.submit();
@@ -93,7 +102,7 @@
 									return true;
 								}
 							}
-						}
+						}									
 					})
 </script>
 <style>
@@ -211,20 +220,11 @@ table {
 							class="form-control" />
 					</div>
 				</div>
-				<!--  
-				<div class="form-group">
-					<label for="content" class="col-sm-2 control-label">댓글 비밀번호</label>
-					<div class="col-sm-10">
-						<input type="text" id="password" name="password"
-							class="form-control" />
-					</div>
-				</div>
-				-->
 				
 				<br>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="button" class="replyWriteBtn btn btn-success">작성</button>
+						<button type="button" id="write_btn" class="replyWriteBtn btn btn-success">작성</button>
 					</div>
 				</div>
 				<br>

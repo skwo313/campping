@@ -11,7 +11,6 @@
 		var formObj = $("form[name='writeForm']");
 		$("#write_btn").click(function(){
 			var title = $("#title").val();
-			var content = $("#content").val();
 			var writer = $("#writer").val();
 			var password = $("#password").val();
 			
@@ -21,7 +20,7 @@
 				
 				return false;
 			}
-			
+		
 			if (writer == ""){
 				alert("작성자를 입력하세요");
 				$("#writer").focus();
@@ -106,9 +105,7 @@ table {
 
 							<div class="mb-3">
 								<label for="content">내용</label>
-								<textarea class="form-control" rows="10" name="content"
-									id="content" placeholder="내용을 입력해 주세요"></textarea>
-
+								<textarea class="form-control" rows="10" name="content" id="content" placeholder="내용을 입력해 주세요"></textarea>
 							</div>
 						</td>
 					</tr>
