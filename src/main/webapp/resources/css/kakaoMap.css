@@ -1,0 +1,85 @@
+@charset "UTF-8";
+.overlaybox {
+	position: relative;
+	width: 275px;
+	height: 350px;
+	background:
+		url('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbFP2jY%2Fbtrub9tM9lk%2FbITAieXhfTuS23AhtGzrz1%2Fimg.png')
+		no-repeat;
+	padding: 15px 10px;
+	padding-left: 15px;
+}
+
+.overlaybox div, ul {
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+.overlaybox li {
+	list-style: none;
+}
+
+.overlaybox .boxtitle {
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	background:
+		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png')
+		no-repeat right 120px center;
+	margin-bottom: 8px;
+}
+
+.overlaybox .first {
+	position: relative;
+	width: 247px;
+	height: 136px;
+	background: no-repeat;
+	background-size: cover;
+	margin-bottom: 8px;
+}
+
+.first .text {
+	color: #fff;
+	font-weight: bold;
+}
+
+.first .movietitle {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.4);
+	padding: 7px 15px;
+	font-size: 14px;
+}
+
+.overlaybox ul {
+	width: 247px;
+}
+
+.overlaybox li {
+	position: relative;
+	margin-bottom: 2px;
+	background: #2b2d36;
+	padding: 5px 10px;
+	color: #aaabaf;
+	line-height: 1.1;
+}
+
+.overlaybox li span {
+	display: inline-block;
+}
+
+
+.overlaybox li .title {
+	font-size: 13px;
+}
+
+
+.overlaybox li .up {
+	background-position: 0 -40px;
+}
+
+.overlaybox li .down {
+	background-position: 0 -60px;
+}

@@ -6,13 +6,14 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="css/datepicker.css">
 <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/kakaoMap.css">
 <header class="bg-dark py-5">
 	<div class="container px-4">
 		<div class="row gx-5 justify-content-center">
 			<div class="col-lg-6">
 				<div class="text-center my-4">
 					<h2 class="display-5 fw-bolder text-white mb-2">어느 캠핑장을 찾으시나요?</h2>
-					<form method="post" action="/camping/search">
+					<form method="post" action="/camping/search" autocomplete="off">
 						<label id="search-tab"> <input id="search-text" name="keyword" class="form-control" placeholder="지역 또는 이름을 입력하세요." />
 						</label>
 					</form>
@@ -21,7 +22,6 @@
 		</div>
 	</div>
 </header>
-
 <div class="main">
 	<div id="map"></div>
 	<div class="list">
@@ -270,4 +270,85 @@
 	</div>
 </div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=06bd11d6b565f348aeb6f7ee8032c658"></script>
-<script type="text/javascript" src="js/kakaoMap.js"></script>
+<script type="text/javascript">
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+	mapOption = { 
+    center: new kakao.maps.LatLng(35.67546548019562, 127.77413496897933), // 지도의 중심좌표
+    level: 11 // 지도의 확대 레벨
+	};
+var imageSrc = 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbqMXOH%2FbtrsSki0YsO%2FuVMoCkyqdKBh0k69CjnIl1%2Fimg.png', // 마커이미지의 주소입니다    
+imageSize = new kakao.maps.Size(35, 48), // 마커이미지의 크기
+imageOption = {
+	offset: new kakao.maps.Point(0, 0)
+}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정
+
+//마커의 이미지정보를 가지고 있는 마커이미지를 생성
+var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize,
+imageOption)
+//마커를 생성합니다
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+var positions = [];
+<c:forEach items="${list}" var="list" varStatus="vs">
+	positions.push({
+		content:'<div class="overlaybox">' +
+	    '    <div class="boxtitle">상세 정보</div>' +
+	    '    <div class="first" style="background-image: url(${list.camping_image })">' +
+	    '        <div class="movietitle text">${list.camping_name}</div>' +
+	    '    </div>' +
+	    '    <ul>' +
+	    '        <li class="up">' +
+	    '            <span class="title">${list.camping_loc}</span>' +
+	    '        </li>' +
+	    '        <li>' +
+	    '            <span class="title">${list.camping_price}원 / 1박</span>' +
+	    '        </li>' +
+	    '        <li>' +
+	    '            <span class="title">${list.camping_des}</span>' +
+	    '        </li>' +
+	    '    </ul>' +
+	    '</div>',
+		lating: new kakao.maps.LatLng(${list.camping_locationx},${list.camping_locationy})
+		});
+</c:forEach>
+
+for (var i = 0; i < positions.length; i ++) {
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: positions[i].lating, // 마커의 위치
+        image: markerImage
+        
+    });
+    // 마커에 표시할 인포윈도우를 생성합니다 
+    var infowindow = new kakao.maps.InfoWindow({
+        content: positions[i].content // 인포윈도우에 표시할 내용
+    });
+
+    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+
+    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+}
+
+// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+function makeOverListener(map, marker, infowindow) {
+    return function() {
+        infowindow.open(map, marker);
+        var infoTitle = document.querySelectorAll('.overlaybox');
+		console.log(infoTitle);
+		infoTitle.forEach(function(e) {
+		    e.parentElement.parentElement.style.border = "0px";
+		    e.parentElement.parentElement.style.background = "unset";
+		});
+    };
+}
+
+// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+function makeOutListener(infowindow) {
+    return function() {
+        infowindow.close();
+    };
+}
+</script>
