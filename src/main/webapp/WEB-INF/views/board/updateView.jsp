@@ -30,6 +30,15 @@
 						})
 
 				$(".update_btn").on("click", function() {
+					var password = $("#password").val();
+					
+					if(password == ""){
+						alert("비밀번호를 입력하세요");
+						$("#password").focus();
+						
+						return false;
+					}			
+					
 					if (fn_valiChk()) {
 						return false;
 					}

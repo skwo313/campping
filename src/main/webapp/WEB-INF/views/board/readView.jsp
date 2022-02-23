@@ -15,7 +15,6 @@
 						
 						// 수정 
 						$("#update_btn").click(function(){
-							
 							var password = $("#password").val();
 							
 							if(password == ""){
@@ -100,7 +99,7 @@
 						function fn_fileDown(fileNo){
 							var formObj = $("form[name='readForm']");
 							$("#FILE_NO").attr("value", fileNo);
-							formObj.attr("action", "/board/fileDown");
+							formObj.attr("action", "fileDown");
 							formObj.submit();
 						}
 
