@@ -9,7 +9,32 @@
 <script type="text/javascript">
 		$(document).ready(function() {
 		var formObj = $("form[name='writeForm']");
-		$(".write_btn").on("click", function() {
+		$("#write_btn").click(function(){
+			var title = $("#title").val();
+			var content = $("#content").val();
+			var writer = $("#writer").val();
+			var password = $("#password").val();
+			
+			if (title == ""){
+				alert("제목을 입력하세요");
+				$("#title").focus();
+				
+				return false;
+			}
+			
+			if (writer == ""){
+				alert("작성자를 입력하세요");
+				$("#writer").focus();
+				
+				return false;
+			}
+			
+			if (password == ""){
+				alert("비밀번호를 입력하세요");
+				$("#password").focus();
+				
+				return false;
+			}
 
 			if (fn_valiChk()) {
 				return false;
@@ -17,9 +42,9 @@
 			formObj.attr("action", "write");
 			formObj.attr("method", "post");
 			formObj.submit();
+			
+			fn_addFile();
 		});
-		fn_addFile();
-		}
 		
 		$(".list_btn")
 		.on(
@@ -115,7 +140,7 @@ table {
 					</tr>
 					<tr>
 						<td>
-							<button class="write_btn btn btn-success" type="submit">작성</button>
+							<button class="write_btn btn btn-success" type="submit" id="write_btn">작성</button>
 							<button class="fileAdd_btn btn btn-primary" type="button">파일추가</button>	
 							<button type="button" class="btn btn-primary" onclick="location.href='list'">목록</button> <br> <br> <br>
 						</td>
