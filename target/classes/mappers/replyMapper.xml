@@ -21,7 +21,7 @@
 	)
 	VALUES(    #{bno}
 		, CAMPING_BOARD_LIST_SEQ.NEXTVAL
-		, #{content}
+		, #{content, jdbcType=VARCHAR}
 		, #{writer})
 	</insert>
 	
