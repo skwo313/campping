@@ -14,7 +14,16 @@
 						var formObj = $("form[name='readForm']");
 						
 						// 수정 
-						$(".update_btn").on("click", function() {
+						$("#update_btn").click(function(){
+							var password = $("password").val();
+							
+							if(password == ""){
+								alert("비밀번호를 입력하세요");
+								$("#password").focus();
+								
+								return false;
+							}
+							
 							formObj.attr("action", "updateView");
 							formObj.attr("method", "get");
 							formObj.submit();
@@ -23,7 +32,15 @@
 						// 삭제
 						$(".delete_btn").on("click", function() {
 							var deleteYN = confirm("삭제하시겠습니까?");
-
+							var password = $("password").val();
+							
+							if(password == ""){
+								alert("비밀번호를 입력하세요");
+								$("#password").focus();
+								
+								return false;
+							}
+										
 							if (deleteYN == true) {
 
 								formObj.attr("action", "delete");
@@ -46,7 +63,7 @@
 						$(".replyWriteBtn").on("click", function() {
 							var writer = $("#writer").val();
 							
-							if (writer == ""){
+							if (writer == null){
 								alert("작성자를 입력하세요");
 								$("#writer").focus();
 								
@@ -162,14 +179,14 @@ table {
 				
 				<div class="form-group">
 					<div class="col-sm-10">
-						<label for="password" class="col-sm-2 control-label">비밀번호</label>
+						<label for="password" class="col-sm-2 control-label" id="password">비밀번호</label>
 						<input type="password" id="password" name="password" value="${password}" class="form-control" placeholder="수정 또는 삭제시 비밀번호를 입력해주세요" /><br>
 					</div>
 				</div>
 			</form>
 			<div>
-				<button type="button" class="update_btn btn btn-warning">수정</button>
-				<button type="submit" class="delete_btn btn btn-danger">삭제</button>
+				<button type="button" class="update_btn btn btn-warning" id="update_btn">수정</button>
+				<button type="submit" class="delete_btn btn btn-danger" id="delete_btn">삭제</button>
 				<button type="button" class="list_btn btn btn-primary">목록</button>
 				<br>
 			</div>
@@ -207,14 +224,14 @@ table {
 					value="${scri.keyword}">
 
 				<div class="form-group">
-					<label for="writer" class="col-sm-2 control-label">댓글 작성자</label>
+					<label for="writer" class="col-sm-2 control-label" id="writer">댓글 작성자</label>
 					<div class="col-sm-10">
 						<input type="text" id="writer" name="writer" class="form-control" />
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label for="content" class="col-sm-2 control-label">댓글 내용</label>
+					<label for="content" class="col-sm-2 control-label" id="content">댓글 내용</label>
 					<div class="col-sm-10">
 						<input type="text" id="content" name="content"
 							class="form-control" />
