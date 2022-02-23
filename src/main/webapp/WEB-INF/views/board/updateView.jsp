@@ -132,7 +132,7 @@ table {
 						<tr>
 						<td>
 							<div class="mb-3">
-								<label for="reg_id">비밀번호</label> <input type="text"
+								<label for="reg_id">비밀번호</label> <input type="password"
 									class="form-control" name="password" id="password"
 									placeholder="비밀번호를 입력해주세요.">
 							</div>
