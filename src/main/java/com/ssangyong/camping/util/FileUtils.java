@@ -14,7 +14,7 @@ import com.ssangyong.camping.vo.BoardVO;
 
 @Component("fileUtils")
 public class FileUtils {
-	private static final String filePath = "C:\\mp\\file\\"; // 파일이 저장될 위치
+	private static final String filePath = "C:\\camping\\file\\"; // 파일이 저장될 위치
 	
 	public List<Map<String, Object>> parseInsertFileInfo(BoardVO boardVO, 
 			MultipartHttpServletRequest mpRequest) throws Exception{
