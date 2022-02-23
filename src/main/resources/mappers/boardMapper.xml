@@ -132,7 +132,6 @@
     	UPDATE CAMPING_BOARD_LIST_FILE
     	   SET DEL_GB = 'Y'
     	WHERE FILE_NO = #{FILE_NO}
-    	  AND PASSWORD = #{password}
     </update>
 	
 	
