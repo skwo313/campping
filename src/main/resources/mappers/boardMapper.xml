@@ -75,6 +75,7 @@
 		   SET TITLE    =   #{title},
 		   	   CONTENT  =   #{content}
 		 WHERE BNO = #{bno}
+		   AND PASSWORD = #{password}
    </update>
 	
    <delete id="delete" parameterType="com.ssangyong.camping.vo.BoardVO">

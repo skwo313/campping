@@ -15,6 +15,7 @@
 						
 						// 수정 
 						$("#update_btn").click(function(){
+							
 							var password = $("#password").val();
 							
 							if(password == ""){
@@ -22,8 +23,8 @@
 								$("#password").focus();
 								
 								return false;
-							}
-												
+							}			
+											
 							formObj.attr("action", "updateView");
 							formObj.attr("method", "get");
 							formObj.submit();
