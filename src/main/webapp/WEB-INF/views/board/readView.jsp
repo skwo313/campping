@@ -23,10 +23,11 @@
 								
 								return false;
 							}
-							
+												
 							formObj.attr("action", "updateView");
 							formObj.attr("method", "get");
 							formObj.submit();
+
 						})
 
 						// 삭제
