@@ -4,6 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <title>게시판</title>
 </head>
 
@@ -95,11 +98,13 @@
 													+ "&rno="
 													+ $(this).attr("data-rno");
 										});
+						})
+						
 						// 첨부파일 다운
 						function fn_fileDown(fileNo){
 							var formObj = $("form[name='readForm']");
 							$("#FILE_NO").attr("value", fileNo);
-							formObj.attr("action", "fileDown");
+							formObj.attr("action", "/camping/board/fileDown");
 							formObj.submit();
 						}
 
@@ -113,7 +118,7 @@
 								}
 							}
 						}									
-					})
+				
 </script>
 <style>
 table {
@@ -162,10 +167,10 @@ table {
 				<div class="form-group">
 					<div class="col-sm-10">
 					<span>파일 목록</span>
-						<div class="form-group" style="border: 1px solid #dbdbdb;" class="col-sm-2 control-label">
-						<c:forEach var="file" items="${file}">
+					<div class="form-group" style="border: 1px solid #dbdbdb;" class="col-sm-2 control-label">
+					<c:forEach var="file" items="${file}">
 						<a href="#" onclick="fn_fileDown('${file.FILE_NO}'); return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)<br>
-						</c:forEach><br>
+					</c:forEach><br>
 					</div>
 					</div>
 				</div>
