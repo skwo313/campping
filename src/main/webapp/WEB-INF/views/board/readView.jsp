@@ -15,7 +15,7 @@
 						
 						// 수정 
 						$("#update_btn").click(function(){
-							var password = $("password").val();
+							var password = $("#password").val();
 							
 							if(password == ""){
 								alert("비밀번호를 입력하세요");
@@ -32,17 +32,16 @@
 						// 삭제
 						$(".delete_btn").on("click", function() {
 							var deleteYN = confirm("삭제하시겠습니까?");
-							var password = $("password").val();
-							
-							if(password == ""){
-								alert("비밀번호를 입력하세요");
-								$("#password").focus();
-								
-								return false;
-							}
+							var password = $("#password").val();
 										
-							if (deleteYN == true) {
-
+							if (deleteYN == true) {						
+								if (password == ""){
+									alert("비밀번호를 입력하세요");
+									$("#password").focus();
+									
+									return false;
+								}				
+								
 								formObj.attr("action", "delete");
 								formObj.attr("method", "post");
 								formObj.submit();
@@ -60,15 +59,8 @@
 													+ "&searchType=${scri.searchType}&keyword=${scri.keyword}";
 										})
 
+                        // 댓글 작성										
 						$(".replyWriteBtn").on("click", function() {
-							var writer = $("#writer").val();
-							
-							if (writer == null){
-								alert("작성자를 입력하세요");
-								$("#writer").focus();
-								
-								return false;
-							}		
 							
 							var formObj = $("form[name='replyForm']");
 							formObj.attr("action", "replyWrite");
@@ -179,8 +171,8 @@ table {
 				
 				<div class="form-group">
 					<div class="col-sm-10">
-						<label for="password" class="col-sm-2 control-label" id="password">비밀번호</label>
-						<input type="password" id="password" name="password" value="${password}" class="form-control" placeholder="수정 또는 삭제시 비밀번호를 입력해주세요" /><br>
+						<label for="password" class="col-sm-2 control-label">비밀번호</label>
+						<input type="password" id="password" name="password" class="form-control" placeholder="수정 또는 삭제시 비밀번호를 입력해주세요" /><br>
 					</div>
 				</div>
 			</form>

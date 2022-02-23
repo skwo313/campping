@@ -74,7 +74,7 @@
 		UPDATE CAMPING_BOARD_LIST
 		   SET TITLE    =   #{title},
 		   	   CONTENT  =   #{content}
-		 WHERE BNO = #{bno} 
+		 WHERE BNO = #{bno}
    </update>
 	
    <delete id="delete" parameterType="com.ssangyong.camping.vo.BoardVO">
