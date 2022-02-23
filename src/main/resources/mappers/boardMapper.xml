@@ -15,7 +15,7 @@
 	   					       , PASSWORD )
 	                  VALUES(    #{bno}
 	                 		   , #{title}
-	                 		   , #{content}
+	                 		   , #{content, jdbcType=VARCHAR}
 	                 		   , #{writer} 
 	                 		   , #{password} )
     </insert>
