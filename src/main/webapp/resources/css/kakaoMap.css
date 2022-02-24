@@ -10,7 +10,7 @@
 	padding-left: 15px;
 }
 
-.overlaybox div, ul {
+.overlaybox > ul, .overlaybox > div {
 	overflow: hidden;
 	margin: 0;
 	padding: 0;
