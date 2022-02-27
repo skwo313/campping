@@ -33,10 +33,10 @@ public class ObjectController {
 	private ObjectService service;
 	
 	@GetMapping("/object")
-	public String object(HttpServletRequest request, @Param("sort") String sort, @RequestParam(value="keyword", defaultValue="") String keyword, PagingVO paging, @RequestParam(value="nowPage", defaultValue="1") String nowPage, Model d) throws Exception {
+	public String object(HttpServletRequest request, @Param("sort") String sort, @RequestParam(value="keyword", defaultValue="") String keyword, @RequestParam(value="nowPage", defaultValue="1") String nowPage, Model d) throws Exception {
 		int total = service.searchCnt(keyword);
 		
-		paging = new PagingVO(total, Integer.parseInt(nowPage));
+		PagingVO paging = new PagingVO(total, Integer.parseInt(nowPage));
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("CAMPING_NAME", keyword);
 		map.put("start", paging.getStart());

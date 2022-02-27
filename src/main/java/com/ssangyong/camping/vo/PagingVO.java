@@ -10,9 +10,9 @@ public class PagingVO {
 	public PagingVO(int total, int nowPage) {
 		setNowPage(nowPage);
 		setTotal(total);
-		calcLastPage(getTotal(), getCntPerPage());
+		calcLastPage(getTotal(), cntPerPage);
 		calcStartEndPage(getNowPage(), cntPage);
-		calcStartEnd(getNowPage(), getCntPerPage());
+		calcStartEnd(getNowPage(), cntPerPage);
 	}
 	
 	// 제일 마지막 페이지 계산
