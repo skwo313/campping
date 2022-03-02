@@ -6,12 +6,11 @@
 <fmt:requestEncoding value="utf-8" />
 
 <title>CampPing</title>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="css/main.css">
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
+<link href="${path}/css/mypage.css" rel="stylesheet">
 
 <style>
 .bd-placeholder-img {
@@ -29,9 +28,28 @@
 }
 </style>
 
-
-<!-- Custom styles for this template -->
-<link href="css/mypage.css?after" rel="stylesheet">
+<script type="text/javascript">
+	$(document).ready(function() {
+		var uptMsg = "${uptMsg}";
+		if (uptMsg != "") {
+			if(confirm(uptMsg+"\n메인으로 이동하시겠습니까?")){
+				location.href="${path}/";
+			}
+		};
+		$("#pwChBtn").click(function(){
+			var userPw = "${member.userPw}";
+			if(userPw != $("#inputCurrentPw").val()) {
+				alert("현재 비밀번호가 일치하지 않습니다.");
+			} else if($("#inputPw").val() != $("#inputPwConfirm").val()){
+				alert("새 비밀번호가 일치하지 않습니다.");
+			} else {
+				$("form").submit();
+			}
+		});
+		
+	});
+	
+</script>
 
 <div class="container-fluid">
 	<div class="row">
@@ -44,7 +62,7 @@
 				</h6>
 				<ul class="nav flex-column">
 					<li class="nav-item"><a class="nav-link" aria-current="page"
-						href="#"> <span data-feather="file"></span> 캠핑장 에약 조회
+						href="reservations"> <span data-feather="file"></span> 캠핑장 에약 조회
 					</a></li>
 				</ul>
 				<h6
@@ -55,7 +73,7 @@
 					<li class="nav-item"><a class="nav-link" href="#"> <span
 							data-feather="file"></span> 주문목록/배송 조회
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#"> <span
+					<li class="nav-item"><a class="nav-link" href="cart"> <span
 							data-feather="shopping-cart"></span> 장바구니
 					</a></li>
 				</ul>
@@ -64,7 +82,7 @@
 					<span>나의 정보</span>
 				</h6>
 				<ul class="nav flex-column">
-					<li class="nav-item"><a class="nav-link active" href="#">
+					<li class="nav-item"><a class="nav-link active" href="userConfirm">
 							<span data-feather="users"></span> 개인정보확인/수정
 					</a></li>
 				</ul>
@@ -78,7 +96,7 @@
 				<h1 class="h4">회원정보수정</h1>
 			</div>
 
-			<form>
+			<form action="userModify" method="post">
 				<table class="table table-responsive table-light align-middle">
 					<tbody>
 						<tr>
@@ -89,11 +107,11 @@
 									변경</button></td>
 						<tr>
 							<th class="table-primary">이름</th>
-							<td><strong>홍길동</strong></td>
+							<td><strong>${member.userName }</strong></td>
 						</tr>
 						<tr>
 							<th class="table-primary">휴대폰 번호</th>
-							<td><strong>010-1234-5678</strong>
+							<td><strong>${member.userPhone }</strong>
 								<button type="button"
 									class="btn btn-light btn-outline-secondary btn-sm">휴대폰
 									번호 변경</button></td>
@@ -107,14 +125,14 @@
 											비밀번호</label>
 										<div class="col-sm-6">
 											<input class="form-control" type="password"
-												id="inputCurrentPw">
+												id="inputCurrentPw" required>
 										</div>
 									</div>
 									<div class="mb-3 row">
 										<label class="col-sm-3 col-form-label" for="inputNewPw">새
 											비밀번호</label>
 										<div class="col-sm-6">
-											<input class="form-control" type="password" id="inputPw">
+											<input class="form-control" type="password" id="inputPw" required>
 										</div>
 									</div>
 									<div class="mb-3 row">
@@ -122,7 +140,7 @@
 											다시 입력</label>
 										<div class="col-sm-6">
 											<input class="form-control" type="password"
-												id="inputPwConfirm">
+												id="inputPwConfirm" name="userPw" required>
 										</div>
 									</div>
 									<button type="button" id="pwChBtn"
@@ -149,10 +167,7 @@
 </div>
 
 
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
 <script
 	src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-<script src="js/dashboard.js"></script>
+<script src="${path }/js/dashboard.js"></script>

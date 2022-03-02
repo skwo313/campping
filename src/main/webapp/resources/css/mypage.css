@@ -126,9 +126,22 @@ button {
 	margin-left: -1px !important;
 }
 
-.h5 {
+#reserveList {
 	padding-top: 30px;
-	padding-bottom: 30px;
+	padding-bottom: 10px;
+}
+
+#useageList {
+	padding-top: 30px;
+	padding-bottom: 10px;
+}
+
+#rlist {
+	padding-left: 11px;
+}
+
+#ulist {
+	padding-left: 11px;
 }
 
 #reservation-detail {
@@ -147,8 +160,173 @@ button {
 	background-color: #ebebeb;
 	padding: 2px 9px;
 	border-radius: 4px;
+	position: relative;
+	bottom: 10px;
 }
 
 #campsiteName {
 	margin-top: 5px;
 }
+
+/* 예약내역 */
+#reserveDte {
+	padding-top: 30px;
+	padding-bottom: 20px;
+}
+
+.col-sm-2 {
+	padding-bottom: 10px;
+	opacity: 0.5;
+}
+
+#pay {
+	padding-top: 30px;
+}
+
+#pay .row .h5 {
+	padding-bottom: 17px;
+}
+
+#price {
+	color: #e61c51;
+}
+
+#cancelBtn {
+	position: relative;
+	top: 30px;
+	right: 20px;
+}
+/* 주문목록 */
+.orderContainer {
+	border: 1px solid rgba(0, 0, 0, 0.125);
+	border-radius: 0.25rem;
+	max-width: 900px;
+	margin-top: 30px;
+}
+
+.orderContainer>.card>.row>.col-md-9>.row>img {
+	width: 160px;
+	height: 140px;
+	border: none;
+	margin-left: 10px;
+}
+
+.card>.row>.col-md-9 {
+	border-right: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.orderdate {
+	font-weight: 500;
+	font-size: large;
+	padding-top: 9px;
+	padding-left: 40px;
+}
+
+.deliveryStat {
+	font-weight: 500;
+	font-size: large;
+	padding: 10px 0 5px 10px;
+}
+
+.orderContainer>.card {
+	max-width: 900px;
+	margin: 10px 30px 20px 30px;
+	padding-left: 10px;
+}
+
+.col-md-9>.row {
+	margin-bottom: 30px;
+}
+
+.orderName {
+	padding-top: 3px;
+	font-size: 17px;
+}
+
+.orderInfo {
+	padding-top: 10px;
+	font-size: 16px;
+}
+
+#addCart {
+	position: relative;
+	right: 20px;
+	top: 40px;
+}
+
+.buttons {
+	display: flex;
+	flex-flow: column wrap;
+	height: 100%;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: justify;
+	justify-content: space-between;
+	padding: 35px 20px 0 0;
+}
+
+.bsize {
+	width: 170px;
+	height: 100%;
+}
+
+main {
+	margin-bottom: 30px;
+}
+
+/* 장바구니 */
+.table {
+	vertical-align: middle;
+}
+
+.table td {
+	border-right: 1px solid #f7f7f7;
+}
+
+.table>tbody>tr>td>.row>img {
+	width: 130px;
+	height: 115px;
+}
+
+.cart-total-price {
+	border: 4px solid #c8c8c8;
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.price-area {
+	display: inline-block;
+	margin: 0 auto;
+	vertical-align: top;
+	padding: 20px 15px 18px;
+	font-size: 14px;
+	line-height: 17px;
+	color: #555;
+	text-align: center;
+}
+
+.final-product-price, .final-delivery-charge {
+	padding: 0 4px 0 5px;
+	font: 700 17px/17px tahoma;
+	color: #111;
+}
+
+.final-order-price {
+	color: #ea0000;
+	font-size: 20px;
+}
+
+.order-buttons {
+	margin-top: 30px;
+	text-align: center;
+}
+
+.order-buttons > .btn {
+	width: 180px;
+	height: 60px;
+	position: relative;
+	right: 20px;
+}
+
+

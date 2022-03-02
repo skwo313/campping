@@ -6,12 +6,11 @@
 <fmt:requestEncoding value="utf-8" />
 
 <title>CampPing</title>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="css/main.css">
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
+<link href="${path}/css/mypage.css" rel="stylesheet">
 
 <style>
 .bd-placeholder-img {
@@ -29,9 +28,21 @@
 }
 </style>
 
-
-<!-- Custom styles for this template -->
-<link href="css/dashboard.css?after" rel="stylesheet">
+<script type="text/javascript">
+	$(document).ready(function() {
+		var loginMsg = "${loginMsg}";
+		if (loginMsg != "") {
+			alert(loginMsg);
+		};
+		
+		var hasSession = "${member.userId}";
+		if (hasSession == "") {
+			alert("로그인이 필요합니다.");
+			location.href= "${path}/member/login";
+		};
+		
+	});
+</script>
 
 <div class="container-fluid">
 	<div class="row">
@@ -44,7 +55,7 @@
 				</h6>
 				<ul class="nav flex-column">
 					<li class="nav-item"><a class="nav-link" aria-current="page"
-						href="#"> <span data-feather="file"></span> 캠핑장 에약 조회
+						href="reservations"> <span data-feather="file"></span> 캠핑장 에약 조회
 					</a></li>
 				</ul>
 				<h6
@@ -55,7 +66,7 @@
 					<li class="nav-item"><a class="nav-link" href="#"> <span
 							data-feather="file"></span> 주문목록/배송 조회
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#"> <span
+					<li class="nav-item"><a class="nav-link" href="cart"> <span
 							data-feather="shopping-cart"></span> 장바구니
 					</a></li>
 				</ul>
@@ -64,15 +75,17 @@
 					<span>나의 정보</span>
 				</h6>
 				<ul class="nav flex-column">
-					<li class="nav-item"><a class="nav-link active" href="#">
-							<span data-feather="users"></span> 개인정보확인/수정
+					<li class="nav-item"><a class="nav-link active"
+						href="userConfirm"> <span data-feather="users"></span>
+							개인정보확인/수정
 					</a></li>
 				</ul>
 
 			</div>
 		</nav>
 
-		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="padding: 50px;">
+		<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4"
+			style="padding: 50px;">
 			<div
 				class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 				<h1 class="h4">회원정보확인</h1>
@@ -81,16 +94,16 @@
 				<div class="mb-3">
 					<div id="emailHelp" class="form-text" style="padding-bottom: 10px;">${member.userId}님의
 						정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인 합니다</div>
-					<label for="exampleInputEmail1" class="form-label">아이디</label>
-					<span class="h6" style="padding-left:26px">${member.userId}</span>
+					<label for="exampleInputEmail1" class="form-label">아이디</label> <span
+						class="h6" style="padding-left: 26px">${member.userId}</span>
 				</div>
 				<div class="row g-3 align-items-center">
 					<div class="col-auto">
 						<label for="inputPassword6" class="col-form-label">비밀번호</label>
 					</div>
 					<div class="col-auto">
-						<input type="password" id="inputPassword6" class="form-control"
-							aria-describedby="passwordHelpInline">
+						<input type="password" name="pass" id="inputPassword6"
+							class="form-control" aria-describedby="passwordHelpInline">
 					</div>
 					<div class="col-auto">
 						<span id="passwordHelpInline" class="form-text"> Must be
@@ -108,10 +121,7 @@
 </div>
 
 
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
 <script
 	src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-<script src="js/dashboard.js"></script>
+<script src="${path}/js/dashboard.js"></script>

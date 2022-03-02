@@ -40,7 +40,7 @@
 							}
 							%>
 							<li><hr class="dropdown-divider" /></li>
-							<li><a class="dropdown-item" href="#">마이페이지</a></li>
+							<li><a class="dropdown-item" href="/camping/mypage/userConfirm">마이페이지</a></li>
 						</ul></li>
 			</ul>
 		</div>
