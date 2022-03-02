@@ -19,7 +19,8 @@ public class MainServiceImpl implements MainService{
 	
 	// 캠핑장 목록 조회
 	@Override
-	public List<CampingInfoVO> list(HashMap<String, Object> hashMap) throws Exception{
+	public List<CampingInfoVO> list(HashMap<String, Object> hashMap)
+			throws Exception{
 		System.out.println(hashMap);
 		return dao.list(hashMap);
 	}
@@ -28,9 +29,4 @@ public class MainServiceImpl implements MainService{
 	public void order(CampingOrderVO orderVO) throws Exception{
 		dao.order(orderVO);
 	}
-	// 캠핑장 검색 조회
-//	@Override
-//	public List<CampingInfoVO> searchList(String keyword) throws Exception{
-//		return dao.searchList(keyword);
-//	}
 }

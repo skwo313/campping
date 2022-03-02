@@ -27,8 +27,5 @@ public class MainDAOImpl implements MainDAO {
 	public void order(CampingOrderVO orderVO) throws Exception{
 		sqlSession.insert("mainMapper.order", orderVO);
 	}
-//	@Override
-//	public List<CampingInfoVO> searchList(String keyword) throws Exception{
-//		return sqlSession.selectList("mainMapper.searchList", keyword);
-//	}
+
 }

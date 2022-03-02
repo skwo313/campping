@@ -56,10 +56,6 @@ public class HomeController {
 	@RequestMapping(value = "/order", method = RequestMethod.POST)
 	public String Order(CampingOrderVO orderVO, Model d) throws Exception{
 		logger.info("Order");
-		/*
-		 * HttpSession session = req.getSession(); MemberVO vo =
-		 * (MemberVO)session.getAttribute("member"); System.out.println(vo.getUserId());
-		 */
 		service.order(orderVO);
 		return "redirect:/";
 	}
