@@ -1,10 +1,11 @@
-package com.ssangyong.camping.service;
+package com.ssangyong.camping.service.impl;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
 import com.ssangyong.camping.dao.MemberDAO;
+import com.ssangyong.camping.service.MemberService;
 import com.ssangyong.camping.vo.MemberVO;
 
 @Service
@@ -27,4 +28,5 @@ public class MemberServiceImpl implements MemberService {
 		int result = dao.idChk(vo);
 		return result;
 	}
+
 }
