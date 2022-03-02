@@ -1,10 +1,11 @@
-package com.ssangyong.camping.dao;
+package com.ssangyong.camping.dao.impl;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.ssangyong.camping.dao.MemberDAO;
 import com.ssangyong.camping.vo.MemberVO;
 
 @Repository
@@ -26,4 +27,5 @@ public class MemberDAOImpl implements MemberDAO {
 		int result = sql.selectOne("memberMapper.idChk", vo);
 		return result;
 	}
+
 }

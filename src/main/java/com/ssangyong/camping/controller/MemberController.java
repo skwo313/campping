@@ -85,4 +85,5 @@ public class MemberController {
 		System.out.println("결과"+result);
 		return result;
 	}
+	
 }
