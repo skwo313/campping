@@ -29,26 +29,30 @@
 }
 </style>
 
-
+<!-- 금액 총 합계  -->
 <script type="text/javascript">
+	$(document).ready(function(){
+		$("#flexCheckChecked").prop("checked", true);
+        $(".form-check-input").prop("checked", true);
+        itemSum();
+	});
+	
+	function itemSum() {
+		var str = "";
+		var sum = 0;
+		var count = $(".form-check-input").length;
+		console.log(count);
+		for (var i = 0; i < count; i++) {
+			if ($(".form-check-input").eq(i).is(':checked') == true) {
+				console.log($('.form-check-input').eq(i).val());
+				sum += parseInt($('.form-check-input').eq(i).val() );
+			}
+		};
+		console.log(sum);
+		$(".final-product-price").text(sum);
+	}
 
-
-
-function selectAll(selectAll) {
-  const checkboxes 
-       = document.getElementsByName('order');
-  
-  checkboxes.forEach((checkbox) => {
-    checkbox.checked = selectAll.checked;
-  })
-}
-/*
-var tot = function() {
-	let cnt = $("[name=cnt]").val();
-	let price = $("#price").text();
-	let sum = cnt*price;
-	$("#tot").text(sum);
-}*/
+	
 </script>
 
 <div class="container-fluid">
@@ -62,7 +66,8 @@ var tot = function() {
 				</h6>
 				<ul class="nav flex-column">
 					<li class="nav-item"><a class="nav-link" aria-current="page"
-						href="reservations"> <span data-feather="file"></span> 캠핑장 에약 조회
+						href="reservations"> <span data-feather="file"></span> 캠핑장 에약
+							조회
 					</a></li>
 				</ul>
 				<h6
@@ -82,8 +87,8 @@ var tot = function() {
 					<span>나의 정보</span>
 				</h6>
 				<ul class="nav flex-column">
-					<li class="nav-item"><a class="nav-link" href="userConfirm"> <span
-							data-feather="users"></span> 개인정보확인/수정
+					<li class="nav-item"><a class="nav-link" href="userConfirm">
+							<span data-feather="users"></span> 개인정보확인/수정
 					</a></li>
 				</ul>
 
@@ -96,64 +101,95 @@ var tot = function() {
 				<h1 class="h4" style="padding-top: 30px;">장바구니</h1>
 			</div>
 
-			<table class="table">
-				<thead>
-				<colgroup>
-					<col width="10%">
-					<col width="*">
-					<col width="15%">
-				</colgroup>
-				<tr class="table-light">
-					<th><input class="form-check-input" name="order"
-						type="checkbox" value="selectall" id="flexCheckChecked"
-						onclick="selectAll(this)" checked> 전체선택</th>
-					<th>상품정보</th>
-					<th>상품금액</th>
-				</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="cart" items="${cartList}">
-						<tr>
-							<td><input class="form-check-input" name="order"
-								type="checkbox" value="" id="flexCheckDefault" checked></td>
-							<td>
-								<div class="row">
-									<img src="${cart.camping_object_image}"
-										class="col-md-4 img-thumbnail rounded-start" alt="...">
-									<div class="col-md-8">
-										<div class="orderName">${cart.camping_object_name}</div>
-										<div class="orderInfo">
-											<span id="price"><fmt:formatNumber
-													value="${cart.camping_object_price}" /> 원</span> <select
-												name="cnt" class="form-select form-select-sm"
-												aria-label=".form-select-sm example">
-												<option value="1" selected>1</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
-												<option value="5">5</option>
-											</select>
+			<form>
+				<table class="table">
+					<thead>
+					<colgroup>
+						<col width="10%">
+						<col width="*">
+						<col width="17%">
+					</colgroup>
+					<tr class="table-light">
+						<th><input name="order"
+							type="checkbox" value="selectall" id="flexCheckChecked" checked>
+							전체선택</th>
+						<!-- 상품 전체선택  -->
+						<script>
+							$("#flexCheckChecked").click(function() {
+								var chk = $("#flexCheckChecked").prop("checked");
+								if (chk) {
+									$(".form-check-input").prop("checked", true);
+									itemSum();
+								} else {
+									$(".form-check-input").prop("checked", false);
+									itemSum();
+								}
+							});
+						</script>
+						<th>상품정보</th>
+						<th>상품금액</th>
+					</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="cart" items="${cartList}">
+							<tr>
+								<td><input class="form-check-input" onClick="itemSum()"
+									type="checkbox" value="${cart.camping_object_price}"
+									id="flexCheckDefault" /></td>
+								<td>
+									<div class="row">
+										<img src="${cart.camping_object_image}"
+											class="col-md-4 img-thumbnail rounded-start" alt="...">
+										<div class="col-md-8">
+											<div class="orderName">${cart.camping_object_name}</div>
+											<div class="orderInfo">
+												<span class="price" data-price="${cart.camping_object_price}"><fmt:formatNumber   
+														value="${cart.camping_object_price}" /> 원</span> 
+												<select name="cnt" class="form-select form-select-sm"
+													aria-label=".form-select-sm example">
+													<option value="1" selected>1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+													<option value="5">5</option>
+												</select>
+
+											</div>
 
 										</div>
-
 									</div>
-								</div>
-							</td>
-							<td><div id="tot"><fmt:formatNumber value="${cart.camping_object_price}" /> 원</div></td>
-						</tr>
-					</c:forEach>
-
-				</tbody>
-			</table>
-
+								</td>
+								<td><div class="sum">
+										<fmt:formatNumber value="${cart.camping_object_price}" />
+										원
+									</div></td>
+								
+							</tr>
+						</c:forEach>
+						<script type="text/javascript">
+							$(document).ready(function(){
+								$("select[name='cnt']").change(function() {
+									var cnt = $(this).val();
+									var i = $("[name=cnt]").index(this); 
+									var price = $(".price").eq(i).data("price");
+									var sum = price * cnt;
+									$(".sum").eq(i).text(sum.toLocaleString() + " 원");
+									$(".form-check-input").eq(i).val(sum);
+									itemSum();
+								});
+							});
+						</script>
+					</tbody>
+				</table>
+			</form>
+			
 			<div class="cart-total-price">
 				<div class="price-area">
-					총 상품가격 <em class="final-product-price">16,520</em>원 <span
+					총 상품가격 <em class="final-product-price"></em>원 <span
 						data-feather="plus-square"></span> 총 배송비 <em
 						class="final-delivery-charge">0</em>원 <span
 						data-feather="chevron-right"></span>총 주문금액 <em
-						class="final-order-price" data-final-order-price="16520">
-						16,520원 </em>
+						class="final-product-price" ></em>
 				</div>
 			</div>
 

@@ -93,7 +93,7 @@ public class MypageController {
 		return "redirect:/mypage/reservations";
 	}
 	
-	// 장바구니 
+	// 장바구니 조회
 	@RequestMapping(value = "/cart", method = RequestMethod.GET)
 	public String cart(@ModelAttribute("member") MemberVO cart,
 						Model model) throws Exception {

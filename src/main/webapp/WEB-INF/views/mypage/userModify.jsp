@@ -143,7 +143,7 @@
 												id="inputPwConfirm" name="userPw" required>
 										</div>
 									</div>
-									<button type="button" id="pwChBtn"
+									<button type="submit" id="pwChBtn"
 										class="btn btn-light btn-outline-secondary btn-sm">비밀번호
 										변경</button>
 								</div>
