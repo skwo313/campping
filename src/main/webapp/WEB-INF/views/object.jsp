@@ -159,7 +159,7 @@
 			<div>
 				<span>CART</span>
 				<div class="cartcnt">
-					<span>${cartCnt}</span>
+					<a href="/camping/mypage/cart">${cartCnt}</a>
 				</div>
 			</div>
 		</div>

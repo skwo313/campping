@@ -219,9 +219,13 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 	text-align: center;
 	margin-left: 5px;
 }
-.cartcnt > span {
+.cartcnt > a {
+	text-decoration: none;
 	font-size: 10px;
 	color: black;
+}
+.cartcnt > a:hover {
+	text-decoration: underline;
 }
 .fixedcon {
 	display: flex;

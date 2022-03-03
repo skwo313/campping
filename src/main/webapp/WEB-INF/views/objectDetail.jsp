@@ -93,7 +93,7 @@
 						 			$("#login").hide();
 						 			$("#shoping").hide();
 						 			$("#cartIns").click(function(){
-						 				location.href="/camping/object";
+						 				location.href="/camping/mypage/cart";
 						 			});
 						 			$("#close").click(function(){
 						 				$("#exampleModalCenter").modal("hide");
@@ -229,7 +229,7 @@
 			<div>
 				<span>CART</span>
 				<div class="cartcnt">
-					<span>${cartCnt}</span>
+					<a href="/camping/mypage/cart">${cartCnt}</a>
 				</div>
 			</div>
 		</div>
