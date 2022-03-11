@@ -88,15 +88,13 @@ table {
 	<br>
 	<br>
 	<section id="container">
-		<form name="writeForm" id="form" method="post" action="write" enctype="multipart/form-data">
+		<form name="writeForm" id="form" method="post" action="/board/write" enctype="multipart/form-data">
 			<table>
 				<tbody>
 					<tr>
 						<td>
 							<div class="mb-3">
-								<label for="title">제목</label> <input type="text"
-									class="form-control" name="title" id="title"
-									placeholder="제목을 입력해 주세요">
+								<label for="title">제목</label> <input type="text" class="form-control" name="title" id="title" class="chk" title="제목을 입력하세요."/>
 							</div>
 						</td>
 					</tr>
@@ -105,7 +103,7 @@ table {
 
 							<div class="mb-3">
 								<label for="content">내용</label>
-								<textarea class="form-control" rows="10" name="content" id="content" placeholder="내용을 입력해 주세요"></textarea>
+								<textarea class="form-control" rows="10" name="content" id="content" class="chk" title="내용을 입력해 주세요"></textarea>
 							</div>
 						</td>
 					</tr>
@@ -113,9 +111,7 @@ table {
 						<td>
 
 							<div class="mb-3">
-								<label for="reg_id">작성자</label> <input type="text"
-									class="form-control" name="writer" id="writer"
-									placeholder="이름을 입력해 주세요">
+								<label for="reg_id">작성자</label> <input type="text" class="form-control" name="writer" id="writer" class="chk" title="이름을 입력해 주세요">
 							</div>
 						</td>
 					</tr>

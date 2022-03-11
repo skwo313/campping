@@ -8,9 +8,7 @@
 <br>
 <title>게시판</title>
 	 	<style type="text/css">
-			li {list-style: none; float: left; padding: 6px;}
-			
-			
+			li {list-style: none; float: left; padding: 6px;}	
 		</style>
 </head>
 <body>
