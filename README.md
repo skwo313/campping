@@ -17,7 +17,6 @@
   - Maven 3.8.4
   - Oracle 11g
   - Mybatis 3.4.6
-  - OAuth 2.0 API
 #### `Front-end`
   - Javascript
   - jQuery
